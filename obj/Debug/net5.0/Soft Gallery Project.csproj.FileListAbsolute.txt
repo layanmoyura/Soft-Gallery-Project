@@ -1,0 +1,40 @@
+D:\Soft Gallery Project\bin\Debug\net5.0\appsettings.Development.json
+D:\Soft Gallery Project\bin\Debug\net5.0\appsettings.json
+D:\Soft Gallery Project\bin\Debug\net5.0\Soft Gallery Project.exe
+D:\Soft Gallery Project\bin\Debug\net5.0\Soft Gallery Project.deps.json
+D:\Soft Gallery Project\bin\Debug\net5.0\Soft Gallery Project.runtimeconfig.json
+D:\Soft Gallery Project\bin\Debug\net5.0\Soft Gallery Project.runtimeconfig.dev.json
+D:\Soft Gallery Project\bin\Debug\net5.0\Soft Gallery Project.dll
+D:\Soft Gallery Project\bin\Debug\net5.0\ref\Soft Gallery Project.dll
+D:\Soft Gallery Project\bin\Debug\net5.0\Soft Gallery Project.pdb
+D:\Soft Gallery Project\bin\Debug\net5.0\Soft Gallery Project.Views.dll
+D:\Soft Gallery Project\bin\Debug\net5.0\Soft Gallery Project.Views.pdb
+D:\Soft Gallery Project\obj\Debug\net5.0\Soft Gallery Project.csproj.AssemblyReference.cache
+D:\Soft Gallery Project\obj\Debug\net5.0\Soft Gallery Project.GeneratedMSBuildEditorConfig.editorconfig
+D:\Soft Gallery Project\obj\Debug\net5.0\Soft Gallery Project.AssemblyInfoInputs.cache
+D:\Soft Gallery Project\obj\Debug\net5.0\Soft Gallery Project.AssemblyInfo.cs
+D:\Soft Gallery Project\obj\Debug\net5.0\Soft Gallery Project.csproj.CoreCompileInputs.cache
+D:\Soft Gallery Project\obj\Debug\net5.0\Soft Gallery Project.MvcApplicationPartsAssemblyInfo.cache
+D:\Soft Gallery Project\obj\Debug\net5.0\Soft Gallery Project.RazorAssemblyInfo.cache
+D:\Soft Gallery Project\obj\Debug\net5.0\Soft Gallery Project.RazorAssemblyInfo.cs
+D:\Soft Gallery Project\obj\Debug\net5.0\staticwebassets\Soft Gallery Project.StaticWebAssets.Manifest.cache
+D:\Soft Gallery Project\obj\Debug\net5.0\staticwebassets\Soft Gallery Project.StaticWebAssets.xml
+D:\Soft Gallery Project\obj\Debug\net5.0\scopedcss\bundle\Soft Gallery Project.styles.css
+D:\Soft Gallery Project\obj\Debug\net5.0\Soft Gallery Project.TagHelpers.input.cache
+D:\Soft Gallery Project\obj\Debug\net5.0\Soft Gallery Project.TagHelpers.output.cache
+D:\Soft Gallery Project\obj\Debug\net5.0\Soft Gallery Project.RazorCoreGenerate.cache
+D:\Soft Gallery Project\obj\Debug\net5.0\Razor\Views\Home\Index.cshtml.g.cs
+D:\Soft Gallery Project\obj\Debug\net5.0\Razor\Views\Home\Privacy.cshtml.g.cs
+D:\Soft Gallery Project\obj\Debug\net5.0\Razor\Views\Shared\Error.cshtml.g.cs
+D:\Soft Gallery Project\obj\Debug\net5.0\Razor\Views\Shared\_Layout.cshtml.g.cs
+D:\Soft Gallery Project\obj\Debug\net5.0\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
+D:\Soft Gallery Project\obj\Debug\net5.0\Razor\Views\_ViewImports.cshtml.g.cs
+D:\Soft Gallery Project\obj\Debug\net5.0\Razor\Views\_ViewStart.cshtml.g.cs
+D:\Soft Gallery Project\obj\Debug\net5.0\Soft Gallery Project.RazorTargetAssemblyInfo.cache
+D:\Soft Gallery Project\obj\Debug\net5.0\Soft Gallery Project.RazorTargetAssemblyInfo.cs
+D:\Soft Gallery Project\obj\Debug\net5.0\Soft Gallery Project.Views.pdb
+D:\Soft Gallery Project\obj\Debug\net5.0\Soft Gallery Project.dll
+D:\Soft Gallery Project\obj\Debug\net5.0\ref\Soft Gallery Project.dll
+D:\Soft Gallery Project\obj\Debug\net5.0\Soft Gallery Project.pdb
+D:\Soft Gallery Project\obj\Debug\net5.0\Soft Gallery Project.genruntimeconfig.cache
+D:\Soft Gallery Project\obj\Debug\net5.0\Soft Gallery Project.csproj.CopyComplete
