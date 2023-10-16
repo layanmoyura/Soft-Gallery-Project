@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "au1XuBjtH8v13VHHsdrI0AF/AhjuPfKqWKMpdkmpeor7gxVdWDPBVKf8OT+FCW+O2w+l83GnrW30uD7IPvk00g==",
+  "success": true,
+  "projectFilePath": "D:\\Soft Gallery Project\\Soft Gallery Project.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\acer\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.11.1\\microsoft.visualstudio.azure.containers.tools.targets.1.11.1.nupkg.sha512"
+  ],
+  "logs": []
+}
