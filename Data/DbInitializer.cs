@@ -1,4 +1,4 @@
-﻿using ContosoUniversity.Models;
+﻿using ContosoUniversity.Entity;
 using System;
 using System.Linq;
 
