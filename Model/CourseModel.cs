@@ -1,11 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using ContosoUniversity.Entity;
 
-namespace Soft_Gallery_Project.Model
+namespace ContosoUniversity.Models
 {
     public class CourseModel
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int CourseID { get; set; }
+        public string Title { get; set; }
+        public int Credits { get; set; }
+
+        public List<Enrollment> Enrollments { get; set; }
     }
 }
