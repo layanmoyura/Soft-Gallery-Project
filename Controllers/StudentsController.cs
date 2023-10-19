@@ -29,7 +29,7 @@ namespace ContosoUniversity.Controllers
         {
             var students = await _context.Students.ToListAsync();
             var studentmodels = _mapper.Map<List<StudentModel>>(students);
-            Console.WriteLine(studentmodels);
+     
             return View(studentmodels);
         }
 
@@ -41,20 +41,12 @@ namespace ContosoUniversity.Controllers
             }
 
             var student = await _context.Students
-                .FirstOrDefaultAsync(m => m.ID == id);
+             .Include(s => s.Enrollments)
+             .ThenInclude(e => e.Course)
+             .FirstOrDefaultAsync(m => m.ID == id);
 
-            if (student == null)
-            {
-                return NotFound();
-            }
-
-            student.Enrollments = await _context.Enrollments
-                .Include(e => e.Course)
-                .Where(e => e.StudentID == student.ID)
-                .ToListAsync();
 
             var studentmodel = _mapper.Map<StudentModel>(student);
-
 
             return View(studentmodel);
         }
@@ -90,8 +82,8 @@ namespace ContosoUniversity.Controllers
             return View();
         }
 
-        [HttpGet("Edit/{id}")]
-       
+        [HttpGet, ActionName("Edit")]
+
         public async Task<IActionResult> Edit(int? id)
         {
             if(id == null)
@@ -112,7 +104,7 @@ namespace ContosoUniversity.Controllers
         }
 
 
-        [HttpPost, ActionName("EditPost")]
+        [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
 
         public async Task<IActionResult> EditPost(int? id)
@@ -154,7 +146,7 @@ namespace ContosoUniversity.Controllers
             return View();
         }
 
-        [HttpGet("Delete/{id}")]
+        [HttpGet,ActionName("Delete")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -172,7 +164,7 @@ namespace ContosoUniversity.Controllers
         }
 
         // POST: Students/Delete/5
-        [HttpPost, ActionName("DeleteConfirm")]
+        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirm(int id)
         {

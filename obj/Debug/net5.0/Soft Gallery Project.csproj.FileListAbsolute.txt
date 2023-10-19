@@ -151,3 +151,13 @@ D:\Soft Gallery Project\obj\Debug\net5.0\Razor\Views\Students\Details.cshtml.g.c
 D:\Soft Gallery Project\obj\Debug\net5.0\Razor\Views\Students\Edit.cshtml.g.cs
 D:\Soft Gallery Project\obj\Debug\net5.0\Razor\Views\Students\Index.cshtml.g.cs
 D:\Soft Gallery Project\bin\Debug\net5.0\AutoMapper.dll
+D:\Soft Gallery Project\obj\Debug\net5.0\Razor\Views\Courses\Create.cshtml.g.cs
+D:\Soft Gallery Project\obj\Debug\net5.0\Razor\Views\Courses\Delete.cshtml.g.cs
+D:\Soft Gallery Project\obj\Debug\net5.0\Razor\Views\Courses\Details.cshtml.g.cs
+D:\Soft Gallery Project\obj\Debug\net5.0\Razor\Views\Courses\Edit.cshtml.g.cs
+D:\Soft Gallery Project\obj\Debug\net5.0\Razor\Views\Courses\Index.cshtml.g.cs
+D:\Soft Gallery Project\obj\Debug\net5.0\Razor\Views\Enrollments\Create.cshtml.g.cs
+D:\Soft Gallery Project\obj\Debug\net5.0\Razor\Views\Enrollments\Delete.cshtml.g.cs
+D:\Soft Gallery Project\obj\Debug\net5.0\Razor\Views\Enrollments\Details.cshtml.g.cs
+D:\Soft Gallery Project\obj\Debug\net5.0\Razor\Views\Enrollments\Edit.cshtml.g.cs
+D:\Soft Gallery Project\obj\Debug\net5.0\Razor\Views\Enrollments\Index.cshtml.g.cs

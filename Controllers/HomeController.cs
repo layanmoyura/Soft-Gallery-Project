@@ -7,7 +7,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Soft_Gallery_Project.Controllers
+namespace ContosoUniversity.Controllers
 {
     public class HomeController : Controller
     {

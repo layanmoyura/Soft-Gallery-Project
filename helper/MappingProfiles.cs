@@ -10,6 +10,8 @@ namespace ContosoUniversity.Profiles
         public MappingProfile()
         {
             CreateMap<Student, StudentModel>().ReverseMap();
+            CreateMap<Course, CourseModel>().ReverseMap();
+            CreateMap<Enrollment, EnrollmentModel>().ReverseMap();
 
         }
     }
