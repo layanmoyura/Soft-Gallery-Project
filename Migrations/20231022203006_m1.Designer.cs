@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Soft_Gallery_Project.Migrations
 {
     [DbContext(typeof(SchoolContext))]
-    [Migration("20231020031913_1st_migration")]
-    partial class _1st_migration
+    [Migration("20231022203006_m1")]
+    partial class m1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -73,10 +73,14 @@ namespace Soft_Gallery_Project.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("FirstMidName")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("LastName")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("ID");
 

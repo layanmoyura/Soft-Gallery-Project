@@ -25,9 +25,37 @@ namespace ContosoUniversity.Controllers
 
         //READ
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder, string searchString)
         {
+
+            ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewData["DateSortParm"] = sortOrder == "Date" ? "date_desc" : "Date";
+            ViewData["CurrentFilter"] = searchString;
+
             var students = await _context.Students.ToListAsync();
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                students = students.Where(s => s.LastName.Contains(searchString)
+                                       || s.FirstMidName.Contains(searchString)).ToList();
+            }
+
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    students = students.OrderByDescending(s => s.LastName).ToList();
+                    break;
+                case "Date":
+                    students = students.OrderBy(s => s.EnrollmentDate).ToList();
+                    break;
+                case "date_desc":
+                    students = students.OrderByDescending(s => s.EnrollmentDate).ToList();
+                    break;
+                default:
+                    students = students.OrderBy(s => s.LastName).ToList();
+                    break;
+            }
+            
             var studentmodels = _mapper.Map<List<StudentModel>>(students);
      
             return View(studentmodels);
