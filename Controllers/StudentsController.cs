@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using ContosoUniversity.Data;
 using ContosoUniversity.Entity;
+using ContosoUniversity.Interfaces;
 using ContosoUniversity.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -9,30 +10,35 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+
+
+
 namespace ContosoUniversity.Controllers
 {
     public class StudentsController : Controller
     {
         private readonly SchoolContext _context;
-        private readonly IMapper _mapper; 
+        private readonly IMapper _mapper;
+        private IStudentRepository studentRepository;
 
-    
-        public StudentsController(SchoolContext context, IMapper mapper)
+
+        public StudentsController(SchoolContext context, IMapper mapper, IStudentRepository studentRepository)
         {
             _context = context;
             _mapper = mapper;
+            this.studentRepository = studentRepository;
         }
 
         //READ
 
-        public async Task<IActionResult> Index(string sortOrder, string searchString)
+        public ViewResult Index(string sortOrder, string searchString)
         {
 
             ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewData["DateSortParm"] = sortOrder == "Date" ? "date_desc" : "Date";
             ViewData["CurrentFilter"] = searchString;
 
-            var students = await _context.Students.ToListAsync();
+            var students = studentRepository.GetStudents();
 
             if (!String.IsNullOrEmpty(searchString))
             {
@@ -90,13 +96,13 @@ namespace ContosoUniversity.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         
-        public async Task<IActionResult> Create([Bind("ID,LastName,FirstMidName,EnrollmentDate")] StudentModel studentmodel)
+        public ActionResult Create([Bind("ID,LastName,FirstMidName,EnrollmentDate")] StudentModel studentmodel)
         {
             if (ModelState.IsValid)
             {
                 var student = _mapper.Map<StudentModel, Student>(studentmodel);
-                _context.Add(student);
-                await _context.SaveChangesAsync();
+                studentRepository.InsertStudent(student);
+                studentRepository.Save();
                 return RedirectToAction(nameof(Index));
             }
             return View(studentmodel);

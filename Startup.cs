@@ -12,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ContosoUniversity.Interfaces;
 
 namespace Soft_Gallery_Project
 {
@@ -33,6 +34,9 @@ namespace Soft_Gallery_Project
             services.AddDatabaseDeveloperPageExceptionFilter();
 
             services.AddControllersWithViews();
+
+            services.AddScoped<IStudentRepository, StudentRepository>();
+
 
             services.AddCors(options =>
             {

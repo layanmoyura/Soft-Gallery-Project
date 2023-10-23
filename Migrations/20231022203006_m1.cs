@@ -23,7 +23,7 @@ namespace Soft_Gallery_Project.Migrations
         {
             migrationBuilder.AlterColumn<string>(
                 name: "FirstMidName",
-                table: "Student",
+                table: "Student",  
                 type: "nvarchar(50)",
                 maxLength: 50,
                 nullable: true,
