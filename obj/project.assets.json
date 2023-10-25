@@ -2849,22 +2849,11 @@
           "lib/netstandard1.3/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "BusinessLogicLayer/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v6.0",
-        "compile": {
-          "bin/placeholder/BusinessLogicLayer.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/BusinessLogicLayer.dll": {}
-        }
-      },
       "DataAccessLayer/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
           "AutoMapper": "5.0.0",
-          "BusinessLogicLayer": "1.0.0",
           "Microsoft.EntityFrameworkCore": "5.0.17",
           "Microsoft.EntityFrameworkCore.Relational": "5.0.17",
           "Microsoft.EntityFrameworkCore.SqlServer": "5.0.17"
@@ -8680,11 +8669,6 @@
         "system.xml.xmlserializer.nuspec"
       ]
     },
-    "BusinessLogicLayer/1.0.0": {
-      "type": "project",
-      "path": "C:\\Users\\HP\\source\\repos\\BusinessLogicLayer\\BusinessLogicLayer.csproj",
-      "msbuildProject": "C:\\Users\\HP\\source\\repos\\BusinessLogicLayer\\BusinessLogicLayer.csproj"
-    },
     "DataAccessLayer/1.0.0": {
       "type": "project",
       "path": "C:\\Users\\HP\\source\\repos\\DataAccesLayer\\DataAccessLayer.csproj",
@@ -8694,7 +8678,6 @@
   "projectFileDependencyGroups": {
     "net6.0": [
       "AutoMapper >= 5.0.0",
-      "BusinessLogicLayer >= 1.0.0",
       "DataAccessLayer >= 1.0.0",
       "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore >= 5.0.0",
       "Microsoft.EntityFrameworkCore.SqlServer >= 5.0.17",
@@ -8731,9 +8714,6 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\HP\\source\\repos\\BusinessLogicLayer\\BusinessLogicLayer.csproj": {
-              "projectPath": "C:\\Users\\HP\\source\\repos\\BusinessLogicLayer\\BusinessLogicLayer.csproj"
-            },
             "C:\\Users\\HP\\source\\repos\\DataAccesLayer\\DataAccessLayer.csproj": {
               "projectPath": "C:\\Users\\HP\\source\\repos\\DataAccesLayer\\DataAccessLayer.csproj"
             }

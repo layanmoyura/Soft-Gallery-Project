@@ -9,7 +9,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using DataAccessLayer.Repositary;
+using PresentationLayer.helper;
+
 
 
 
@@ -18,15 +19,14 @@ namespace ContosoUniversity.Controllers
 {
     public class StudentsController : Controller
     {
-        private readonly SchoolContext _context;
-        private readonly IMapper _mapper;
+
         private IStudentRepository studentRepository;
 
 
-        public StudentsController(SchoolContext context, IMapper mapper, IStudentRepository studentRepository)
+        public StudentsController(IStudentRepository studentRepository)
         {
-            _context = context;
-            _mapper = mapper;
+            
+            
             this.studentRepository = studentRepository;
         }
 
@@ -62,7 +62,7 @@ namespace ContosoUniversity.Controllers
                     break;
             }
 
-            var studentmodels = _mapper.Map<List<StudentModel>>(students);
+            var studentmodels = MappingFunctions.ToStudentModelList(students);
 
             return View(studentmodels);
         }
@@ -75,10 +75,10 @@ namespace ContosoUniversity.Controllers
                 return NotFound();
             }
 
-            var student = await studentRepository.GetStudentByIdAsync(id.Value);
+            var student = await studentRepository.GetDetStudentByIdAsync(id.Value);
 
 
-            var studentmodel = _mapper.Map<StudentModel>(student);
+            var studentmodel = MappingFunctions.ToStudentModel(student);
 
             return View(studentmodel);
         }
@@ -98,9 +98,8 @@ namespace ContosoUniversity.Controllers
         {
             if (ModelState.IsValid)
             {
-                var student = _mapper.Map<StudentModel, Student>(studentmodel);
+                var student = MappingFunctions.ToStudent(studentmodel);
                 await studentRepository.InsertStudentAsync(student);
-                await studentRepository.SaveAsync();
                 return RedirectToAction(nameof(Index));
             }
             return View(studentmodel);
@@ -130,7 +129,7 @@ namespace ContosoUniversity.Controllers
                 return NotFound();
             }
 
-            var studentmodel = _mapper.Map<StudentModel>(student);
+            var studentmodel = MappingFunctions.ToStudentModel(student);
 
             return View(studentmodel);
         }
@@ -146,7 +145,7 @@ namespace ContosoUniversity.Controllers
                 return NotFound();
             }
             var student = await studentRepository.GetStudentById(id.Value);
-            var studentmodel = _mapper.Map<StudentModel>(student);
+            var studentmodel = MappingFunctions.ToStudentModel(student);
 
             if (await TryUpdateModelAsync(studentmodel,"",
                 s=>s.FirstMidName,s=>s.LastName,s=>s.EnrollmentDate
@@ -154,10 +153,9 @@ namespace ContosoUniversity.Controllers
             {
                 try
                 {
-                    var updatestudent = _mapper.Map(studentmodel, student);
-                    await _context.SaveChangesAsync();
+                    var updatestudent = MappingFunctions.UpdateStudent(studentmodel, student);
+                    await studentRepository.UpdateStudentAsync(updatestudent);
                     return RedirectToAction(nameof(Index));
-
 
                 }
 
@@ -186,23 +184,21 @@ namespace ContosoUniversity.Controllers
                 return NotFound();
             }
 
-            var student = await _context.Student.FirstOrDefaultAsync(m => m.ID == id);
+            var student = await studentRepository.GetStudentById(id.Value);
             if (student == null)
             {
                 return NotFound();
             }
-            var studentmodel = _mapper.Map<StudentModel>(student);
+            var studentmodel = MappingFunctions.ToStudentModel(student);
             return View(studentmodel);
         }
 
         // POST: Students/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirm(int id)
+        public async Task<IActionResult> DeleteConfirm(int? id)
         {
-            var student = await _context.Student.FindAsync(id);
-            _context.Student.Remove(student);
-            await _context.SaveChangesAsync();
+            await studentRepository.DeleteStudentAsync(id.Value);
             return RedirectToAction(nameof(Index));
         }
 
