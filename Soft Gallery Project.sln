@@ -1,9 +1,18 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.32228.343
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34202.233
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Soft Gallery Project", "Soft Gallery Project.csproj", "{5E3123FF-82BC-4734-8031-465B0A03D4DF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PresentationLayer", "PresentationLayer.csproj", "{5E3123FF-82BC-4734-8031-465B0A03D4DF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccessLayer", "C:\Users\HP\source\repos\DataAccesLayer\DataAccessLayer.csproj", "{7350632F-4F3A-4CA5-B117-9EFD279A47CB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessLogicLayer", "C:\Users\HP\source\repos\BusinessLogicLayer\BusinessLogicLayer.csproj", "{6AAD4CE9-4DC6-4697-9CE9-EE603775E4E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C0ED101C-1D4C-4D54-AE3A-5790830A0862}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +24,14 @@ Global
 		{5E3123FF-82BC-4734-8031-465B0A03D4DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5E3123FF-82BC-4734-8031-465B0A03D4DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5E3123FF-82BC-4734-8031-465B0A03D4DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7350632F-4F3A-4CA5-B117-9EFD279A47CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7350632F-4F3A-4CA5-B117-9EFD279A47CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7350632F-4F3A-4CA5-B117-9EFD279A47CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7350632F-4F3A-4CA5-B117-9EFD279A47CB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6AAD4CE9-4DC6-4697-9CE9-EE603775E4E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6AAD4CE9-4DC6-4697-9CE9-EE603775E4E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6AAD4CE9-4DC6-4697-9CE9-EE603775E4E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6AAD4CE9-4DC6-4697-9CE9-EE603775E4E8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

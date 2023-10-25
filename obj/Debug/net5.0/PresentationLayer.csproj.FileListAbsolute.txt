@@ -1,0 +1,8 @@
+D:\Soft-Gallery-Project\obj\Debug\net5.0\PresentationLayer.csproj.AssemblyReference.cache
+D:\Soft-Gallery-Project\obj\Debug\net5.0\PresentationLayer.GeneratedMSBuildEditorConfig.editorconfig
+D:\Soft-Gallery-Project\obj\Debug\net5.0\PresentationLayer.AssemblyInfoInputs.cache
+D:\Soft-Gallery-Project\obj\Debug\net5.0\PresentationLayer.AssemblyInfo.cs
+D:\Soft-Gallery-Project\obj\Debug\net5.0\PresentationLayer.csproj.CoreCompileInputs.cache
+D:\Soft-Gallery-Project\obj\Debug\net5.0\PresentationLayer.MvcApplicationPartsAssemblyInfo.cache
+D:\Soft-Gallery-Project\obj\Debug\net5.0\PresentationLayer.RazorAssemblyInfo.cache
+D:\Soft-Gallery-Project\obj\Debug\net5.0\PresentationLayer.RazorAssemblyInfo.cs

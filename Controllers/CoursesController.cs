@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using ContosoUniversity.Data;
-using ContosoUniversity.Entity;
+using DataAccessLayer.Data;
+using DataAccessLayer.Entity;
 using AutoMapper;
-using ContosoUniversity.Models;
+using PresentationLayer.Models;
 
 namespace ContosoUniversity.Controllers
 {
@@ -30,7 +28,7 @@ namespace ContosoUniversity.Controllers
         // GET: Courses
         public async Task<IActionResult> Index()
         {
-            var course = await _context.Courses.ToListAsync();
+            var course = await _context.Course.ToListAsync();
             var coursemodels = _mapper.Map<List<CourseModel>>(course);
             return View(coursemodels);
         }
@@ -43,7 +41,7 @@ namespace ContosoUniversity.Controllers
                 return NotFound();
             }
 
-            var course = await _context.Courses
+            var course = await _context.Course
                 .FirstOrDefaultAsync(c => c.CourseID == id);
             if (course == null)
             {
@@ -93,7 +91,7 @@ namespace ContosoUniversity.Controllers
                 return NotFound();
             }
 
-            var course = await _context.Courses.FindAsync(id);
+            var course = await _context.Course.FindAsync(id);
             if (course == null)
             {
                 return NotFound();
@@ -112,7 +110,7 @@ namespace ContosoUniversity.Controllers
                 return NotFound();
             }
 
-            var course = await _context.Courses.FirstOrDefaultAsync(c => c.CourseID == id);
+            var course = await _context.Course.FirstOrDefaultAsync(c => c.CourseID == id);
             var coursemodel = _mapper.Map<CourseModel>(course);
 
             if (await TryUpdateModelAsync<CourseModel>(coursemodel,"",
@@ -149,7 +147,7 @@ namespace ContosoUniversity.Controllers
                 return NotFound();
             }
 
-            var course = await _context.Courses
+            var course = await _context.Course
                 .FirstOrDefaultAsync(m => m.CourseID == id);
             if (course == null)
             {
@@ -166,15 +164,15 @@ namespace ContosoUniversity.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirm(int id)
         {
-            var course = await _context.Courses.FindAsync(id);
-            _context.Courses.Remove(course);
+            var course = await _context.Course.FindAsync(id);
+            _context.Course.Remove(course);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool CourseExists(int id)
         {
-            return _context.Courses.Any(e => e.CourseID == id);
+            return _context.Course.Any(e => e.CourseID == id);
         }
     }
 }

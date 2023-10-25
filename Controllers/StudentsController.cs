@@ -1,14 +1,15 @@
 ﻿using AutoMapper;
-using ContosoUniversity.Data;
-using ContosoUniversity.Entity;
-using ContosoUniversity.Interfaces;
-using ContosoUniversity.Models;
+using DataAccessLayer.Data;
+using DataAccessLayer.Entity;
+using DataAccessLayer.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using PresentationLayer.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DataAccessLayer.Repositary;
 
 
 
@@ -31,14 +32,13 @@ namespace ContosoUniversity.Controllers
 
         //READ
 
-        public ViewResult Index(string sortOrder, string searchString)
+        public async Task<ViewResult> Index(string sortOrder, string searchString)
         {
-
             ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewData["DateSortParm"] = sortOrder == "Date" ? "date_desc" : "Date";
             ViewData["CurrentFilter"] = searchString;
 
-            var students = studentRepository.GetStudents();
+            var students = await studentRepository.GetStudentsAsync();
 
             if (!String.IsNullOrEmpty(searchString))
             {
@@ -61,11 +61,12 @@ namespace ContosoUniversity.Controllers
                     students = students.OrderBy(s => s.LastName).ToList();
                     break;
             }
-            
+
             var studentmodels = _mapper.Map<List<StudentModel>>(students);
-     
+
             return View(studentmodels);
         }
+
 
         public async Task<IActionResult> Details(int? id)
         {
@@ -74,10 +75,7 @@ namespace ContosoUniversity.Controllers
                 return NotFound();
             }
 
-            var student = await _context.Students
-             .Include(s => s.Enrollments)
-             .ThenInclude(e => e.Course)
-             .FirstOrDefaultAsync(m => m.ID == id);
+            var student = await studentRepository.GetStudentByIdAsync(id.Value);
 
 
             var studentmodel = _mapper.Map<StudentModel>(student);
@@ -96,13 +94,13 @@ namespace ContosoUniversity.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         
-        public ActionResult Create([Bind("ID,LastName,FirstMidName,EnrollmentDate")] StudentModel studentmodel)
+        public async Task<ActionResult> CreateAsync([Bind("ID,LastName,FirstMidName,EnrollmentDate")] StudentModel studentmodel)
         {
             if (ModelState.IsValid)
             {
                 var student = _mapper.Map<StudentModel, Student>(studentmodel);
-                studentRepository.InsertStudent(student);
-                studentRepository.Save();
+                await studentRepository.InsertStudentAsync(student);
+                await studentRepository.SaveAsync();
                 return RedirectToAction(nameof(Index));
             }
             return View(studentmodel);
@@ -125,7 +123,7 @@ namespace ContosoUniversity.Controllers
                 return NotFound();
             }
 
-            var student = await _context.Students.AsNoTracking().FirstOrDefaultAsync(s => s.ID == id);
+            var student = await studentRepository.GetStudentById(id.Value);
 
             if(student == null)
             {
@@ -147,10 +145,10 @@ namespace ContosoUniversity.Controllers
             {
                 return NotFound();
             }
-            var student = await _context.Students.FirstOrDefaultAsync(s => s.ID == id);
+            var student = await studentRepository.GetStudentById(id.Value);
             var studentmodel = _mapper.Map<StudentModel>(student);
 
-            if (await TryUpdateModelAsync<StudentModel>(studentmodel,"",
+            if (await TryUpdateModelAsync(studentmodel,"",
                 s=>s.FirstMidName,s=>s.LastName,s=>s.EnrollmentDate
                 ))
             {
@@ -188,7 +186,7 @@ namespace ContosoUniversity.Controllers
                 return NotFound();
             }
 
-            var student = await _context.Students.FirstOrDefaultAsync(m => m.ID == id);
+            var student = await _context.Student.FirstOrDefaultAsync(m => m.ID == id);
             if (student == null)
             {
                 return NotFound();
@@ -202,8 +200,8 @@ namespace ContosoUniversity.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirm(int id)
         {
-            var student = await _context.Students.FindAsync(id);
-            _context.Students.Remove(student);
+            var student = await _context.Student.FindAsync(id);
+            _context.Student.Remove(student);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }

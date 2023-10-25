@@ -1,8 +1,8 @@
 ﻿using System;
-using ContosoUniversity.Entity;
 using System.Collections.Generic;
+using DataAccessLayer.Entity;
 
-namespace ContosoUniversity.Models
+namespace PresentationLayer.Models
 {
     public class StudentModel
     {

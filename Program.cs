@@ -1,4 +1,4 @@
-using ContosoUniversity.Data;
+using DataAccessLayer.Data;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
@@ -6,7 +6,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using Soft_Gallery_Project;
 
-namespace ContosoUniversity
+namespace PresentationLayer
 {
     public class Program
     {

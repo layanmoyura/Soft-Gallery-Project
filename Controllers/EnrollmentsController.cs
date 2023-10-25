@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using ContosoUniversity.Data;
-using ContosoUniversity.Entity;
 using AutoMapper;
-using ContosoUniversity.Models;
+using DataAccessLayer.Data;
+using PresentationLayer.Models;
+using DataAccessLayer.Entity;
 
 namespace ContosoUniversity.Controllers
 {
@@ -27,8 +26,8 @@ namespace ContosoUniversity.Controllers
         // GET: Enrollments
         public async Task<IActionResult> Index()
         {
-            var enrollments =await _context.Enrollments.Include(e => e.Course).Include(e => e.Student).ToListAsync();
-            var enrollmentmodels = _mapper.Map<List<EnrollmentModel>>(enrollments);
+            var enrollments =await _context.Enrollment.Include(e => e.Course).Include(e => e.Student).ToListAsync();
+            var enrollmentmodels = _mapper.Map<List<PresentationLayer.Models.EnrollmentModel>>(enrollments);
             return View(enrollmentmodels);
         }
 
@@ -40,7 +39,7 @@ namespace ContosoUniversity.Controllers
                 return NotFound();
             }
 
-            var enrollment = await _context.Enrollments
+            var enrollment = await _context.Enrollment
                 .Include(e => e.Course)
                 .Include(e => e.Student)
                 .FirstOrDefaultAsync(m => m.EnrollmentID == id);
@@ -57,8 +56,8 @@ namespace ContosoUniversity.Controllers
         // GET: Enrollments/Create
         public IActionResult Create()
         {
-            ViewData["CourseID"] = new SelectList(_context.Courses, "CourseID", "CourseID");
-            ViewData["StudentID"] = new SelectList(_context.Students, "ID", "ID");
+            ViewData["CourseID"] = new SelectList(_context.Course, "CourseID", "CourseID");
+            ViewData["StudentID"] = new SelectList(_context.Student, "ID", "ID");
             return View();
         }
 
@@ -74,8 +73,8 @@ namespace ContosoUniversity.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CourseID"] = new SelectList(_context.Courses, "CourseID", "CourseID", enrollmentmodel.CourseID);
-            ViewData["StudentID"] = new SelectList(_context.Students, "ID", "ID", enrollmentmodel.StudentID);
+            ViewData["CourseID"] = new SelectList(_context.Course, "CourseID", "CourseID", enrollmentmodel.CourseID);
+            ViewData["StudentID"] = new SelectList(_context.Student, "ID", "ID", enrollmentmodel.StudentID);
             return View(enrollmentmodel);
         }
 
@@ -88,7 +87,7 @@ namespace ContosoUniversity.Controllers
                 return NotFound();
             }
 
-            var enrollment = await _context.Enrollments.FindAsync(id);
+            var enrollment = await _context.Enrollment.FindAsync(id);
             if (enrollment == null)
             {
                 return NotFound();
@@ -96,8 +95,8 @@ namespace ContosoUniversity.Controllers
 
             var enrollmentmodel = _mapper.Map<EnrollmentModel>(enrollment);
 
-            ViewData["CourseID"] = new SelectList(_context.Courses, "CourseID", "CourseID", enrollmentmodel.CourseID);
-            ViewData["StudentID"] = new SelectList(_context.Students, "ID", "ID", enrollmentmodel.StudentID);
+            ViewData["CourseID"] = new SelectList(_context.Course, "CourseID", "CourseID", enrollmentmodel.CourseID);
+            ViewData["StudentID"] = new SelectList(_context.Student, "ID", "ID", enrollmentmodel.StudentID);
             return View(enrollmentmodel);
         }
 
@@ -112,7 +111,7 @@ namespace ContosoUniversity.Controllers
                 return NotFound();
             }
 
-            var enrollment = await _context.Enrollments.FirstOrDefaultAsync(e => e.EnrollmentID == id);
+            var enrollment = await _context.Enrollment.FirstOrDefaultAsync(e => e.EnrollmentID == id);
             var enrollmentmodel = _mapper.Map<EnrollmentModel>(enrollment);
 
             if (await TryUpdateModelAsync<EnrollmentModel>(enrollmentmodel,"",
@@ -139,8 +138,8 @@ namespace ContosoUniversity.Controllers
                 }
                 
             }
-            ViewData["CourseID"] = new SelectList(_context.Courses, "CourseID", "CourseID", enrollmentmodel.CourseID);
-            ViewData["StudentID"] = new SelectList(_context.Students, "ID", "ID", enrollmentmodel.StudentID);
+            ViewData["CourseID"] = new SelectList(_context.Course, "CourseID", "CourseID", enrollmentmodel.CourseID);
+            ViewData["StudentID"] = new SelectList(_context.Student, "ID", "ID", enrollmentmodel.StudentID);
             return View(enrollmentmodel);
         }
 
@@ -153,7 +152,7 @@ namespace ContosoUniversity.Controllers
                 return NotFound();
             }
 
-            var enrollment = await _context.Enrollments
+            var enrollment = await _context.Enrollment
                 .Include(e => e.Course)
                 .Include(e => e.Student)
                 .FirstOrDefaultAsync(m => m.EnrollmentID == id);
@@ -171,15 +170,15 @@ namespace ContosoUniversity.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var enrollment = await _context.Enrollments.FindAsync(id);
-            _context.Enrollments.Remove(enrollment);
+            var enrollment = await _context.Enrollment.FindAsync(id);
+            _context.Enrollment.Remove(enrollment);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool EnrollmentExists(int id)
         {
-            return _context.Enrollments.Any(e => e.EnrollmentID == id);
+            return _context.Enrollment.Any(e => e.EnrollmentID == id);
         }
     }
 }

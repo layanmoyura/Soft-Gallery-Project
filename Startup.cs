@@ -1,18 +1,14 @@
-using ContosoUniversity.Data;
+using DataAccessLayer.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using AutoMapper;
-using ContosoUniversity.Profiles;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using ContosoUniversity.Interfaces;
+using PresentationLayer.helper;
+using DataAccessLayer.Interfaces;
+using DataAccessLayer.Repositary;
 
 namespace Soft_Gallery_Project
 {

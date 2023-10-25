@@ -1,11 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DataAccessLayer.Entity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Soft_Gallery_Project.Models;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ContosoUniversity.Controllers
 {

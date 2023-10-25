@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using DataAccessLayer.Entity;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
-using ContosoUniversity.Entity;
 
-namespace ContosoUniversity.Models
+
+namespace PresentationLayer.Models
 {
     public class CourseModel
     {

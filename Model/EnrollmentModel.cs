@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using ContosoUniversity.Entity;
+using DataAccessLayer.Entity;
 
-namespace ContosoUniversity.Models
+namespace PresentationLayer.Models
 {
     public class EnrollmentModel
     {

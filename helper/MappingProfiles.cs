@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
-using ContosoUniversity.Models;
-using ContosoUniversity.Entity;
+using PresentationLayer.Models;
+using DataAccessLayer.Entity;
 
 
-namespace ContosoUniversity.Profiles
+namespace PresentationLayer.helper
 {
     public class MappingProfile : Profile
     {
