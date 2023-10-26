@@ -9,10 +9,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccessLayer", "C:\Users
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessLogicLayer", "C:\Users\HP\source\repos\BusinessLogicLayer\BusinessLogicLayer.csproj", "{6AAD4CE9-4DC6-4697-9CE9-EE603775E4E8}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C0ED101C-1D4C-4D54-AE3A-5790830A0862}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{C0ED101C-1D4C-4D54-AE3A-5790830A0862}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{6AA7EA2F-BA5B-43A4-9BDD-40BE697D601A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Business", "Business", "{546A8DC7-D79A-42B9-9ADE-ABFA4AA06E38}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,6 +39,11 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5E3123FF-82BC-4734-8031-465B0A03D4DF} = {C0ED101C-1D4C-4D54-AE3A-5790830A0862}
+		{7350632F-4F3A-4CA5-B117-9EFD279A47CB} = {6AA7EA2F-BA5B-43A4-9BDD-40BE697D601A}
+		{6AAD4CE9-4DC6-4697-9CE9-EE603775E4E8} = {546A8DC7-D79A-42B9-9ADE-ABFA4AA06E38}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C885B4E0-61BF-44FC-B668-88AC75C04C6B}

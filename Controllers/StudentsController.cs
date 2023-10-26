@@ -1,33 +1,20 @@
-﻿using AutoMapper;
-using DataAccessLayer.Data;
-using DataAccessLayer.Entity;
-using DataAccessLayer.Interfaces;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PresentationLayer.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using PresentationLayer.helper;
-
-
-
-
+using BusinessLayer.Interfaces;
 
 namespace ContosoUniversity.Controllers
 {
     public class StudentsController : Controller
     {
+        private readonly IStudentServices studentServices;
 
-        private IStudentRepository studentRepository;
-
-
-        public StudentsController(IStudentRepository studentRepository)
+        public StudentsController(IStudentServices studentServices)
         {
-            
-            
-            this.studentRepository = studentRepository;
+            this.studentServices = studentServices;            
         }
 
         //READ
@@ -38,29 +25,7 @@ namespace ContosoUniversity.Controllers
             ViewData["DateSortParm"] = sortOrder == "Date" ? "date_desc" : "Date";
             ViewData["CurrentFilter"] = searchString;
 
-            var students = await studentRepository.GetStudentsAsync();
-
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                students = students.Where(s => s.LastName.Contains(searchString)
-                                       || s.FirstMidName.Contains(searchString)).ToList();
-            }
-
-            switch (sortOrder)
-            {
-                case "name_desc":
-                    students = students.OrderByDescending(s => s.LastName).ToList();
-                    break;
-                case "Date":
-                    students = students.OrderBy(s => s.EnrollmentDate).ToList();
-                    break;
-                case "date_desc":
-                    students = students.OrderByDescending(s => s.EnrollmentDate).ToList();
-                    break;
-                default:
-                    students = students.OrderBy(s => s.LastName).ToList();
-                    break;
-            }
+            var students = await studentServices.GetStudentsAsync(sortOrder, searchString);
 
             var studentmodels = MappingFunctions.ToStudentModelList(students);
 
@@ -75,8 +40,7 @@ namespace ContosoUniversity.Controllers
                 return NotFound();
             }
 
-            var student = await studentRepository.GetDetStudentByIdAsync(id.Value);
-
+            var student = await studentServices.GetStudentDetailsAsync(id.Value);
 
             var studentmodel = MappingFunctions.ToStudentModel(student);
 
@@ -90,18 +54,16 @@ namespace ContosoUniversity.Controllers
             return View();
         }
 
-
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        
-        public async Task<ActionResult> CreateAsync([Bind("ID,LastName,FirstMidName,EnrollmentDate")] StudentModel studentmodel)
+        public async Task<ActionResult> Create([Bind("ID,LastName,FirstMidName,EnrollmentDate")] StudentModel studentmodel)
         {
             if (ModelState.IsValid)
             {
                 var student = MappingFunctions.ToStudent(studentmodel);
-                await studentRepository.InsertStudentAsync(student);
+                await studentServices.CreateStudentAsync(student);
                 return RedirectToAction(nameof(Index));
             }
+
             return View(studentmodel);
         }
 
@@ -122,7 +84,7 @@ namespace ContosoUniversity.Controllers
                 return NotFound();
             }
 
-            var student = await studentRepository.GetStudentById(id.Value);
+            var student = await studentServices.GetStudentById(id.Value);
 
             if(student == null)
             {
@@ -137,37 +99,31 @@ namespace ContosoUniversity.Controllers
 
         [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
-
         public async Task<IActionResult> EditPost(int? id)
         {
-            if(id == null)
+            if (id == null)
             {
                 return NotFound();
             }
-            var student = await studentRepository.GetStudentById(id.Value);
+            var student = await studentServices.GetStudentById(id.Value);
             var studentmodel = MappingFunctions.ToStudentModel(student);
 
-            if (await TryUpdateModelAsync(studentmodel,"",
-                s=>s.FirstMidName,s=>s.LastName,s=>s.EnrollmentDate
-                ))
+            if (await TryUpdateModelAsync(studentmodel, "",
+                s => s.FirstMidName, s => s.LastName, s => s.EnrollmentDate))
             {
                 try
                 {
                     var updatestudent = MappingFunctions.UpdateStudent(studentmodel, student);
-                    await studentRepository.UpdateStudentAsync(updatestudent);
+                    await studentServices.UpdateStudentAsync(updatestudent);
                     return RedirectToAction(nameof(Index));
-
                 }
-
                 catch (DbUpdateException)
                 {
                     ModelState.AddModelError("", "Unable to save");
                 }
             }
-
             return View(studentmodel);
         }
-
 
 
         //DELETE
@@ -176,7 +132,7 @@ namespace ContosoUniversity.Controllers
             return View();
         }
 
-        [HttpGet,ActionName("Delete")]
+        [HttpGet, ActionName("Delete")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -184,7 +140,7 @@ namespace ContosoUniversity.Controllers
                 return NotFound();
             }
 
-            var student = await studentRepository.GetStudentById(id.Value);
+            var student = await studentServices.GetStudentById(id.Value);
             if (student == null)
             {
                 return NotFound();
@@ -198,13 +154,9 @@ namespace ContosoUniversity.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirm(int? id)
         {
-            await studentRepository.DeleteStudentAsync(id.Value);
+            await studentServices.DeleteStudentAsync(id.Value);
             return RedirectToAction(nameof(Index));
         }
-
-        
-
-
 
     }
 }

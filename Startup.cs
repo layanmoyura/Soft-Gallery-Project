@@ -8,7 +8,10 @@ using Microsoft.Extensions.Hosting;
 using AutoMapper;
 using PresentationLayer.helper;
 using DataAccessLayer.Interfaces;
-using DataAccessLayer.Repositary;
+using DataAccessLayer.Repositaries;
+using BusinessLayer.Interfaces;
+using BusinessLayer.Services;
+
 
 namespace Soft_Gallery_Project
 {
@@ -32,6 +35,10 @@ namespace Soft_Gallery_Project
             services.AddControllersWithViews();
 
             services.AddScoped<IStudentRepository, StudentRepository>();
+            //services.AddScoped<ICourseRepositary,CourseRepositary>();
+
+
+            services.AddScoped<IStudentServices, StudentServices>();
 
 
             services.AddCors(options =>

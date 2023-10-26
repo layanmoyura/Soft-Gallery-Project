@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
 using DataAccessLayer.Entity;
 using PresentationLayer.Models;
+using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
-namespace PresentationLayer.helper
+namespace PresentationLayer.helper 
 {
     public static class MappingFunctions
     {
@@ -45,5 +47,9 @@ namespace PresentationLayer.helper
             return updatestudent;
         }
 
+        internal static object ToStudentModel(Task<Student> student)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

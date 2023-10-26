@@ -12,12 +12,8 @@ namespace ContosoUniversity.Controllers
 {
     public class CoursesController : Controller
     {   
-        
-
         private readonly SchoolContext _context;
         private readonly IMapper _mapper;
-
-
 
         public CoursesController(SchoolContext context, IMapper mapper)
         {
@@ -72,8 +68,6 @@ namespace ContosoUniversity.Controllers
             }
             return View(coursemodel);
         }
-
-
 
         // GET: Courses/Edit/5
 
