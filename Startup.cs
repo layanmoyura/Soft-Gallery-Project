@@ -11,7 +11,7 @@ using DataAccessLayer.Interfaces;
 using DataAccessLayer.Repositaries;
 using BusinessLayer.Interfaces;
 using BusinessLayer.Services;
-
+using DataAccessLayer.Repositories;
 
 namespace Soft_Gallery_Project
 {
@@ -36,9 +36,11 @@ namespace Soft_Gallery_Project
 
             services.AddScoped<IStudentRepository, StudentRepository>();
             //services.AddScoped<ICourseRepositary,CourseRepositary>();
+            services.AddScoped<IEnrollmentRepositary, EnrollmentRepositary>();
 
 
             services.AddScoped<IStudentServices, StudentServices>();
+            services.AddScoped<IEnrollmentService, EnrollmentService>();
 
 
             services.AddCors(options =>

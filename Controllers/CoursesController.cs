@@ -7,6 +7,7 @@ using DataAccessLayer.Data;
 using DataAccessLayer.Entity;
 using AutoMapper;
 using PresentationLayer.Models;
+using PresentationLayer.helper;
 
 namespace ContosoUniversity.Controllers
 {
@@ -25,7 +26,7 @@ namespace ContosoUniversity.Controllers
         public async Task<IActionResult> Index()
         {
             var course = await _context.Course.ToListAsync();
-            var coursemodels = _mapper.Map<List<CourseModel>>(course);
+            var coursemodels = MappingFunctions.ToCourseModelList(course);
             return View(coursemodels);
         }
 
@@ -44,7 +45,7 @@ namespace ContosoUniversity.Controllers
                 return NotFound();
             }
 
-            var coursemodel = _mapper.Map<CourseModel>(course);
+            var coursemodel = MappingFunctions.ToCourseModel(course);
 
             return View(coursemodel);
         }
@@ -61,7 +62,7 @@ namespace ContosoUniversity.Controllers
         {
             if (ModelState.IsValid)
             {
-                var course = _mapper.Map<CourseModel, Course>(coursemodel);
+                var course = MappingFunctions.ToCourse(coursemodel);
                 _context.Add(course);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -90,7 +91,7 @@ namespace ContosoUniversity.Controllers
             {
                 return NotFound();
             }
-            var coursemodel = _mapper.Map<CourseModel>(course);
+            var coursemodel = MappingFunctions.ToCourseModel(course);
             return View(coursemodel);
         }
 
@@ -105,15 +106,15 @@ namespace ContosoUniversity.Controllers
             }
 
             var course = await _context.Course.FirstOrDefaultAsync(c => c.CourseID == id);
-            var coursemodel = _mapper.Map<CourseModel>(course);
+            var coursemodel = MappingFunctions.ToCourseModel(course);
 
-            if (await TryUpdateModelAsync<CourseModel>(coursemodel,"",
+            if (await TryUpdateModelAsync(coursemodel,"",
                 c => c.CourseID, c => c.Title, c => c.Credits
                 ))
             {
                 try
                 {
-                    var updatecourse = _mapper.Map(coursemodel, course);
+                    var updatecourse = MappingFunctions.UpdateCourse(coursemodel,course);
                     await _context.SaveChangesAsync();
                     return RedirectToAction(nameof(Index));
 
@@ -148,7 +149,7 @@ namespace ContosoUniversity.Controllers
                 return NotFound();
             }
 
-            var coursemodel = _mapper.Map<CourseModel>(course);
+            var coursemodel = MappingFunctions.ToCourseModel(course);
 
             return View(coursemodel);
         }

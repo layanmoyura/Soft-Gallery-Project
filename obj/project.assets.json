@@ -2853,7 +2853,13 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
-          "DataAccessLayer": "1.0.0"
+          "AutoMapper": "5.0.0",
+          "DataAccessLayer": "1.0.0",
+          "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": "5.0.0",
+          "Microsoft.EntityFrameworkCore.SqlServer": "5.0.17",
+          "Microsoft.NETCore.App": "2.2.8",
+          "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": "1.11.1",
+          "Microsoft.VisualStudio.Web.CodeGeneration.Design": "5.0.2"
         },
         "compile": {
           "bin/placeholder/BusinessLogicLayer.dll": {}

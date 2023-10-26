@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -7,27 +6,28 @@ using Microsoft.EntityFrameworkCore;
 using AutoMapper;
 using DataAccessLayer.Data;
 using PresentationLayer.Models;
-using DataAccessLayer.Entity;
+using PresentationLayer.helper;
+using BusinessLayer.Interfaces;
 
 namespace ContosoUniversity.Controllers
 {
     public class EnrollmentsController : Controller
     {
-        private readonly SchoolContext _context;
-        private readonly IMapper _mapper;
+        
+        private readonly IEnrollmentService _enrollmentService;
 
 
-        public EnrollmentsController(SchoolContext context, IMapper mapper)
+        public EnrollmentsController(IEnrollmentService enrollmentService)
         {
-            _context = context;
-            _mapper = mapper;
+            
+            _enrollmentService = enrollmentService;
         }
 
         // GET: Enrollments
-        public async Task<IActionResult> Index()
+        public async Task <ViewResult> Index()
         {
-            var enrollments =await _context.Enrollment.Include(e => e.Course).Include(e => e.Student).ToListAsync();
-            var enrollmentmodels = _mapper.Map<List<PresentationLayer.Models.EnrollmentModel>>(enrollments);
+            var enrollments = await _enrollmentService.GetAllEnrollments();
+            var enrollmentmodels = MappingFunctions.ToEnrollmentModelList(enrollments);
             return View(enrollmentmodels);
         }
 
@@ -39,25 +39,23 @@ namespace ContosoUniversity.Controllers
                 return NotFound();
             }
 
-            var enrollment = await _context.Enrollment
-                .Include(e => e.Course)
-                .Include(e => e.Student)
-                .FirstOrDefaultAsync(m => m.EnrollmentID == id);
+            var enrollment = await _enrollmentService.GetEnrollmentById(id.Value);
             if (enrollment == null)
             {
                 return NotFound();
             }
 
-            var enrollmentmodel = _mapper.Map<EnrollmentModel>(enrollment);
+            var enrollmentmodel = MappingFunctions.ToEnrollmentModel(enrollment);
 
             return View(enrollmentmodel);
         }
 
+
         // GET: Enrollments/Create
-        public IActionResult Create()
+        public async Task<ViewResult> Create()
         {
-            ViewData["CourseID"] = new SelectList(_context.Course, "CourseID", "CourseID");
-            ViewData["StudentID"] = new SelectList(_context.Student, "ID", "ID");
+            ViewData["CourseID"] = new SelectList(await _enrollmentService.GetCourseIDsAsync());
+            ViewData["StudentID"] = new SelectList(await _enrollmentService.GetStudentIDsAsync());
             return View();
         }
 
@@ -68,13 +66,13 @@ namespace ContosoUniversity.Controllers
         {
             if (ModelState.IsValid)
             {
-                var enrollment = _mapper.Map<EnrollmentModel, Enrollment>(enrollmentmodel);
-                _context.Add(enrollment);
-                await _context.SaveChangesAsync();
+                var enrollment = MappingFunctions.ToEnrollment(enrollmentmodel);
+                await _enrollmentService.AddEnrollment(enrollment);
+                
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CourseID"] = new SelectList(_context.Course, "CourseID", "CourseID", enrollmentmodel.CourseID);
-            ViewData["StudentID"] = new SelectList(_context.Student, "ID", "ID", enrollmentmodel.StudentID);
+            ViewData["CourseID"] = new SelectList(await _enrollmentService.GetCourseIDsAsync());
+            ViewData["StudentID"] = new SelectList(await _enrollmentService.GetStudentIDsAsync());
             return View(enrollmentmodel);
         }
 
@@ -87,16 +85,16 @@ namespace ContosoUniversity.Controllers
                 return NotFound();
             }
 
-            var enrollment = await _context.Enrollment.FindAsync(id);
+            var enrollment = await _enrollmentService.GetEnrollmentById(id.Value);
             if (enrollment == null)
             {
                 return NotFound();
             }
 
-            var enrollmentmodel = _mapper.Map<EnrollmentModel>(enrollment);
+            var enrollmentmodel = MappingFunctions.ToEnrollmentModel(enrollment);
 
-            ViewData["CourseID"] = new SelectList(_context.Course, "CourseID", "CourseID", enrollmentmodel.CourseID);
-            ViewData["StudentID"] = new SelectList(_context.Student, "ID", "ID", enrollmentmodel.StudentID);
+            ViewData["CourseID"] = new SelectList(await _enrollmentService.GetCourseIDsAsync());
+            ViewData["StudentID"] = new SelectList(await _enrollmentService.GetStudentIDsAsync());
             return View(enrollmentmodel);
         }
 
@@ -111,35 +109,20 @@ namespace ContosoUniversity.Controllers
                 return NotFound();
             }
 
-            var enrollment = await _context.Enrollment.FirstOrDefaultAsync(e => e.EnrollmentID == id);
-            var enrollmentmodel = _mapper.Map<EnrollmentModel>(enrollment);
+            var enrollment = await _enrollmentService.GetEnrollmentById(id.Value);
+            var enrollmentmodel = MappingFunctions.ToEnrollmentModel(enrollment);
 
             if (await TryUpdateModelAsync<EnrollmentModel>(enrollmentmodel,"",
                 e => e.StudentID, e => e.CourseID, s => s.Grade
                 ))
             {
-                try
-                {
-                    var updateenrollment = _mapper.Map(enrollmentmodel, enrollment);
-                    await _context.SaveChangesAsync();
-                    return RedirectToAction(nameof(Index));
-
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!EnrollmentExists(enrollment.EnrollmentID))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                
+               
+                var updateenrollment = MappingFunctions.UpdateEnrollment(enrollmentmodel, enrollment);
+                await _enrollmentService.UpdateEnrollment(updateenrollment);
+                return RedirectToAction(nameof(Index));        
             }
-            ViewData["CourseID"] = new SelectList(_context.Course, "CourseID", "CourseID", enrollmentmodel.CourseID);
-            ViewData["StudentID"] = new SelectList(_context.Student, "ID", "ID", enrollmentmodel.StudentID);
+            ViewData["CourseID"] = new SelectList(await _enrollmentService.GetCourseIDsAsync());
+            ViewData["StudentID"] = new SelectList(await _enrollmentService.GetStudentIDsAsync());
             return View(enrollmentmodel);
         }
 
@@ -152,15 +135,12 @@ namespace ContosoUniversity.Controllers
                 return NotFound();
             }
 
-            var enrollment = await _context.Enrollment
-                .Include(e => e.Course)
-                .Include(e => e.Student)
-                .FirstOrDefaultAsync(m => m.EnrollmentID == id);
+            var enrollment = await _enrollmentService.GetEnrollmentById(id.Value);
             if (enrollment == null)
             {
                 return NotFound();
             }
-            var enrollmentmodel = _mapper.Map<EnrollmentModel>(enrollment);
+            var enrollmentmodel = MappingFunctions.ToEnrollmentModel(enrollment);
 
             return View(enrollmentmodel);
         }
@@ -168,17 +148,13 @@ namespace ContosoUniversity.Controllers
         // POST: Enrollments/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(int? id)
         {
-            var enrollment = await _context.Enrollment.FindAsync(id);
-            _context.Enrollment.Remove(enrollment);
-            await _context.SaveChangesAsync();
+            var enrollment = await _enrollmentService.GetEnrollmentById(id.Value);
+            await _enrollmentService.DeleteEnrollment(enrollment);
             return RedirectToAction(nameof(Index));
         }
 
-        private bool EnrollmentExists(int id)
-        {
-            return _context.Enrollment.Any(e => e.EnrollmentID == id);
-        }
+       
     }
 }
