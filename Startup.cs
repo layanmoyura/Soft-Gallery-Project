@@ -35,12 +35,14 @@ namespace Soft_Gallery_Project
             services.AddControllersWithViews();
 
             services.AddScoped<IStudentRepository, StudentRepository>();
-            //services.AddScoped<ICourseRepositary,CourseRepositary>();
+            services.AddScoped<ICourseRepositary,CourseRepositary>();
             services.AddScoped<IEnrollmentRepositary, EnrollmentRepositary>();
 
 
             services.AddScoped<IStudentServices, StudentServices>();
             services.AddScoped<IEnrollmentService, EnrollmentService>();
+            services.AddScoped<ICourseServices, CourseService>();
+            
 
 
             services.AddCors(options =>

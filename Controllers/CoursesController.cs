@@ -1,31 +1,25 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using DataAccessLayer.Data;
-using DataAccessLayer.Entity;
-using AutoMapper;
 using PresentationLayer.Models;
 using PresentationLayer.helper;
+using BusinessLayer.Interfaces;
 
 namespace ContosoUniversity.Controllers
 {
     public class CoursesController : Controller
     {   
-        private readonly SchoolContext _context;
-        private readonly IMapper _mapper;
+        
+        private readonly ICourseServices _courseServices;
 
-        public CoursesController(SchoolContext context, IMapper mapper)
+        public CoursesController( ICourseServices courseServices)
         {
-            _context = context;
-            _mapper = mapper;
+            _courseServices = courseServices;
         }
 
         // GET: Courses
         public async Task<IActionResult> Index()
         {
-            var course = await _context.Course.ToListAsync();
+            var course = await _courseServices.GetCoursesAsync();
             var coursemodels = MappingFunctions.ToCourseModelList(course);
             return View(coursemodels);
         }
@@ -38,8 +32,7 @@ namespace ContosoUniversity.Controllers
                 return NotFound();
             }
 
-            var course = await _context.Course
-                .FirstOrDefaultAsync(c => c.CourseID == id);
+            var course = await _courseServices.GetCourseByIdAsync(id.Value);
             if (course == null)
             {
                 return NotFound();
@@ -63,8 +56,7 @@ namespace ContosoUniversity.Controllers
             if (ModelState.IsValid)
             {
                 var course = MappingFunctions.ToCourse(coursemodel);
-                _context.Add(course);
-                await _context.SaveChangesAsync();
+                await _courseServices.AddCourseAsync(course);
                 return RedirectToAction(nameof(Index));
             }
             return View(coursemodel);
@@ -86,7 +78,7 @@ namespace ContosoUniversity.Controllers
                 return NotFound();
             }
 
-            var course = await _context.Course.FindAsync(id);
+            var course = await _courseServices.GetCourseByIdAsync(id.Value);
             if (course == null)
             {
                 return NotFound();
@@ -105,24 +97,17 @@ namespace ContosoUniversity.Controllers
                 return NotFound();
             }
 
-            var course = await _context.Course.FirstOrDefaultAsync(c => c.CourseID == id);
+            var course = await _courseServices.GetCourseByIdAsync(id.Value);
             var coursemodel = MappingFunctions.ToCourseModel(course);
 
             if (await TryUpdateModelAsync(coursemodel,"",
                 c => c.CourseID, c => c.Title, c => c.Credits
                 ))
             {
-                try
-                {
+                 
                     var updatecourse = MappingFunctions.UpdateCourse(coursemodel,course);
-                    await _context.SaveChangesAsync();
+                    await _courseServices.UpdateCourseAsync(updatecourse);
                     return RedirectToAction(nameof(Index));
-
-                }
-                catch (DbUpdateException)
-                {
-                    ModelState.AddModelError("", "Unable to save");
-                }
                 
             }
             return View(coursemodel);
@@ -142,8 +127,7 @@ namespace ContosoUniversity.Controllers
                 return NotFound();
             }
 
-            var course = await _context.Course
-                .FirstOrDefaultAsync(m => m.CourseID == id);
+            var course = await _courseServices.GetCourseByIdAsync(id.Value);
             if (course == null)
             {
                 return NotFound();
@@ -157,17 +141,13 @@ namespace ContosoUniversity.Controllers
         // POST: Courses/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirm(int id)
+        public async Task<IActionResult> DeleteConfirm(int? id)
         {
-            var course = await _context.Course.FindAsync(id);
-            _context.Course.Remove(course);
-            await _context.SaveChangesAsync();
+            var course = await _courseServices.GetCourseByIdAsync(id.Value);
+            await _courseServices.DeleteCourseAsync(course);
             return RedirectToAction(nameof(Index));
         }
 
-        private bool CourseExists(int id)
-        {
-            return _context.Course.Any(e => e.CourseID == id);
-        }
+        
     }
 }

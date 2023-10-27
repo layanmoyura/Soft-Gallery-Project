@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using PresentationLayer.Models;
 using System;
 using System.Threading.Tasks;
@@ -111,16 +110,11 @@ namespace ContosoUniversity.Controllers
             if (await TryUpdateModelAsync(studentmodel, "",
                 s => s.FirstMidName, s => s.LastName, s => s.EnrollmentDate))
             {
-                try
-                {
+              
                     var updatestudent = MappingFunctions.UpdateStudent(studentmodel, student);
                     await studentServices.UpdateStudentAsync(updatestudent);
                     return RedirectToAction(nameof(Index));
-                }
-                catch (DbUpdateException)
-                {
-                    ModelState.AddModelError("", "Unable to save");
-                }
+                  
             }
             return View(studentmodel);
         }
