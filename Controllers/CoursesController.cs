@@ -147,7 +147,5 @@ namespace ContosoUniversity.Controllers
             await _courseServices.DeleteCourseAsync(course);
             return RedirectToAction(nameof(Index));
         }
-
-        
     }
 }
