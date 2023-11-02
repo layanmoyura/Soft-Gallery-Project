@@ -30,7 +30,14 @@
             @Html.DisplayFor(model => model.EnrollmentDate)
         </dd>
     </dl>
-    
+
+    @if (!ViewData.ModelState.IsValid)
+    {
+        <div class="text-danger">
+            <strong>Error:</strong> @ViewData.ModelState[""].Errors[0].ErrorMessage
+        </div>
+    }
+
     <form asp-action="Delete">
         <input type="hidden" asp-for="ID" />
         <input type="submit" value="Delete" class="btn btn-danger" /> |

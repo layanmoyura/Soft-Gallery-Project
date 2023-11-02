@@ -15,17 +15,17 @@
             <input type="hidden" asp-for="EnrollmentID" />
             <div class="form-group">
                 <label asp-for="CourseID" class="control-label"></label>
-                <select asp-for="CourseID" class="form-control" asp-items="ViewBag.CourseID"></select>
+                <select asp-for="CourseID" class="form-control" asp-items="ViewBag.Course"></select>
                 <span asp-validation-for="CourseID" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="StudentID" class="control-label"></label>
-                <select asp-for="StudentID" class="form-control" asp-items="ViewBag.StudentID"></select>
+                <select asp-for="StudentID" class="form-control" asp-items="ViewBag.Student"></select>
                 <span asp-validation-for="StudentID" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Grade" class="control-label"></label>
-                <input asp-for="Grade" class="form-control" />
+                <select asp-for="Grade" class="form-control" asp-items="ViewBag.Grade"></select>
                 <span asp-validation-for="Grade" class="text-danger"></span>
             </div>
             <div class="form-group">

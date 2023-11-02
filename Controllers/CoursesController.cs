@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using PresentationLayer.Models;
 using PresentationLayer.helper;
 using BusinessLayer.Interfaces;
+using Microsoft.EntityFrameworkCore;
+using BusinessLayer.Services;
 
 namespace ContosoUniversity.Controllers
 {
@@ -50,7 +52,7 @@ namespace ContosoUniversity.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        
         public async Task<IActionResult> Create([Bind("CourseID,Title,Credits")] CourseModel coursemodel)
         {
             if (ModelState.IsValid)
@@ -89,7 +91,7 @@ namespace ContosoUniversity.Controllers
 
         
         [HttpPost, ActionName("Edit")]
-        [ValidateAntiForgeryToken]
+        
         public async Task<IActionResult> EditPost(int? id)
         {
             if (id == null)
@@ -140,12 +142,23 @@ namespace ContosoUniversity.Controllers
 
         // POST: Courses/Delete/5
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
+        
         public async Task<IActionResult> DeleteConfirm(int? id)
         {
-            var course = await _courseServices.GetCourseByIdAsync(id.Value);
-            await _courseServices.DeleteCourseAsync(course);
-            return RedirectToAction(nameof(Index));
+            try
+            {
+                var course = await _courseServices.GetCourseByIdAsync(id.Value);
+                await _courseServices.DeleteCourseAsync(course);
+                return RedirectToAction(nameof(Index));
+            }
+
+            catch (DbUpdateException)
+            {
+                ModelState.AddModelError(string.Empty, "Make sure to delete on enrollments before deleting course");
+                var coursemodel = MappingFunctions.ToCourseModel(await _courseServices.GetCourseByIdAsync(id.Value));
+                return View("Delete", coursemodel);
+            }
+           
         }
     }
 }

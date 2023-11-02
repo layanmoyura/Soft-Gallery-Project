@@ -4,6 +4,7 @@ using System;
 using System.Threading.Tasks;
 using PresentationLayer.helper;
 using BusinessLayer.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace ContosoUniversity.Controllers
 {
@@ -97,7 +98,7 @@ namespace ContosoUniversity.Controllers
 
 
         [HttpPost, ActionName("Edit")]
-        [ValidateAntiForgeryToken]
+     
         public async Task<IActionResult> EditPost(int? id)
         {
             if (id == null)
@@ -145,11 +146,19 @@ namespace ContosoUniversity.Controllers
 
         // POST: Students/Delete/5
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirm(int? id)
         {
-            await studentServices.DeleteStudentAsync(id.Value);
-            return RedirectToAction(nameof(Index));
+            try
+            {
+                await studentServices.DeleteStudentAsync(id.Value);
+                return RedirectToAction(nameof(Index));
+            }
+            
+            catch(DbUpdateException){
+                ModelState.AddModelError(string.Empty, "Make sure to delete on enrollments before deleting student");
+                var studentmodel = MappingFunctions.ToStudentModel(await studentServices.GetStudentById(id.Value));
+                return View("Delete", studentmodel);
+            }
         }
 
     }

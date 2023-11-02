@@ -2,12 +2,11 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using AutoMapper;
-using DataAccessLayer.Data;
 using PresentationLayer.Models;
 using PresentationLayer.helper;
 using BusinessLayer.Interfaces;
+using System;
+using System.Collections.Generic;
 
 namespace ContosoUniversity.Controllers
 {
@@ -21,6 +20,17 @@ namespace ContosoUniversity.Controllers
         {
             
             _enrollmentService = enrollmentService;
+        }
+
+        private SelectList CreateSelectList<T>(IEnumerable<T> items, Func<T, string> valueSelector, Func<T, string> textSelector)
+        {
+            var selectList = new SelectList(items.Select(item => new SelectListItem
+            {
+                Value = valueSelector(item),
+                Text = textSelector(item)
+            }), "Value", "Text");
+
+            return selectList;
         }
 
         // GET: Enrollments
@@ -50,18 +60,24 @@ namespace ContosoUniversity.Controllers
             return View(enrollmentmodel);
         }
 
+ 
 
         // GET: Enrollments/Create
         public async Task<ViewResult> Create()
         {
-            ViewData["CourseID"] = new SelectList(await _enrollmentService.GetCourseIDsAsync());
-            ViewData["StudentID"] = new SelectList(await _enrollmentService.GetStudentIDsAsync());
+            var courses = await _enrollmentService.GetCourses();
+            var students = await _enrollmentService.GetStudents();
+            var gradeValues = Enum.GetValues(typeof(Grade)).Cast<int>();
+
+            ViewData["Course"] = CreateSelectList(courses, c => c.CourseID.ToString(), c => c.Title);
+            ViewData["Student"] = CreateSelectList(students, s => s.ID.ToString(), s => s.LastName);
+            ViewData["Grade"] = CreateSelectList(gradeValues, value => value.ToString(), value => Enum.GetName(typeof(Grade), value));
+
             return View();
         }
 
         
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("EnrollmentID,CourseID,StudentID,Grade")] EnrollmentModel enrollmentmodel)
         {
             if (ModelState.IsValid)
@@ -71,11 +87,19 @@ namespace ContosoUniversity.Controllers
                 
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CourseID"] = new SelectList(await _enrollmentService.GetCourseIDsAsync());
-            ViewData["StudentID"] = new SelectList(await _enrollmentService.GetStudentIDsAsync());
-            return View(enrollmentmodel);
-        }
 
+            var courses = await _enrollmentService.GetCourses();
+            var students = await _enrollmentService.GetStudents();
+            var gradeValues = Enum.GetValues(typeof(Grade)).Cast<int>();
+
+            ViewData["Course"] = CreateSelectList(courses, c => c.CourseID.ToString(), c => c.Title);
+            ViewData["Student"] = CreateSelectList(students, s => s.ID.ToString(), s => s.LastName);
+            ViewData["Grade"] = CreateSelectList(gradeValues, value => value.ToString(), value => Enum.GetName(typeof(Grade), value));
+
+            return View(enrollmentmodel);
+            
+        }
+       
         // GET: Enrollments/Edit/5
         [HttpGet, ActionName("Edit")]
         public async Task<IActionResult> Edit(int? id)
@@ -93,15 +117,20 @@ namespace ContosoUniversity.Controllers
 
             var enrollmentmodel = MappingFunctions.ToEnrollmentModel(enrollment);
 
-            ViewData["CourseID"] = new SelectList(await _enrollmentService.GetCourseIDsAsync());
-            ViewData["StudentID"] = new SelectList(await _enrollmentService.GetStudentIDsAsync());
+            var courses = await _enrollmentService.GetCourses();
+            var students = await _enrollmentService.GetStudents();
+            var gradeValues = Enum.GetValues(typeof(Grade)).Cast<int>();
+
+            ViewData["Course"] = CreateSelectList(courses, c => c.CourseID.ToString(), c => c.Title);
+            ViewData["Student"] = CreateSelectList(students, s => s.ID.ToString(), s => s.LastName);
+            ViewData["Grade"] = CreateSelectList(gradeValues, value => value.ToString(), value => Enum.GetName(typeof(Grade), value));
+
             return View(enrollmentmodel);
         }
 
         // POST: Enrollments/Edit/5
         
         [HttpPost,ActionName("Edit")]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> EditPost(int? id)
         {
             if (id == null)
@@ -112,7 +141,7 @@ namespace ContosoUniversity.Controllers
             var enrollment = await _enrollmentService.GetEnrollmentById(id.Value);
             var enrollmentmodel = MappingFunctions.ToEnrollmentModel(enrollment);
 
-            if (await TryUpdateModelAsync<EnrollmentModel>(enrollmentmodel,"",
+            if (await TryUpdateModelAsync(enrollmentmodel,"",
                 e => e.StudentID, e => e.CourseID, s => s.Grade
                 ))
             {
@@ -121,8 +150,15 @@ namespace ContosoUniversity.Controllers
                 await _enrollmentService.UpdateEnrollment(updateenrollment);
                 return RedirectToAction(nameof(Index));        
             }
-            ViewData["CourseID"] = new SelectList(await _enrollmentService.GetCourseIDsAsync());
-            ViewData["StudentID"] = new SelectList(await _enrollmentService.GetStudentIDsAsync());
+
+            var courses = await _enrollmentService.GetCourses();
+            var students = await _enrollmentService.GetStudents();
+            var gradeValues = Enum.GetValues(typeof(Grade)).Cast<int>();
+
+            ViewData["Course"] = CreateSelectList(courses, c => c.CourseID.ToString(), c => c.Title);
+            ViewData["Student"] = CreateSelectList(students, s => s.ID.ToString(), s => s.LastName);
+            ViewData["Grade"] = CreateSelectList(gradeValues, value => value.ToString(), value => Enum.GetName(typeof(Grade), value));
+
             return View(enrollmentmodel);
         }
 
@@ -147,7 +183,6 @@ namespace ContosoUniversity.Controllers
 
         // POST: Enrollments/Delete/5
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int? id)
         {
             var enrollment = await _enrollmentService.GetEnrollmentById(id.Value);

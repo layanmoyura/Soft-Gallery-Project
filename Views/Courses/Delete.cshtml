@@ -30,6 +30,13 @@
             @Html.DisplayFor(model => model.Credits)
         </dd>
     </dl>
+
+    @if (!ViewData.ModelState.IsValid)
+    {
+        <div class="text-danger">
+            <strong>Error:</strong> @ViewData.ModelState[""].Errors[0].ErrorMessage
+        </div>
+    }
     
     <form asp-action="Delete">
         <input type="hidden" asp-for="CourseID" />
