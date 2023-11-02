@@ -126,7 +126,7 @@ namespace ContosoUniversity.Controllers
                     return RedirectToAction(nameof(Index));
 
                 }
-                catch (DbUpdateConcurrencyException)
+                catch 
                 {
                     if (!EnrollmentExists(enrollment.EnrollmentID))
                     {
@@ -139,8 +139,9 @@ namespace ContosoUniversity.Controllers
                 }
                 
             }
-            ViewData["CourseID"] = new SelectList(_context.Courses, "CourseID", "CourseID", enrollmentmodel.CourseID);
-            ViewData["StudentID"] = new SelectList(_context.Students, "ID", "ID", enrollmentmodel.StudentID);
+            ViewData["CourseID"] = new SelectList(_context.Courses, "CourseID", "Title", enrollmentmodel.CourseID);
+            ViewData["StudentID"] = new SelectList(_context.Students, "ID", "LastName", enrollmentmodel.StudentID);
+
             return View(enrollmentmodel);
         }
 

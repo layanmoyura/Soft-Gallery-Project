@@ -196,10 +196,22 @@ namespace ContosoUniversity.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirm(int id)
         {
-            var student = await _context.Students.FindAsync(id);
-            _context.Students.Remove(student);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            try{
+                var student = await _context.Students.FindAsync(id);
+                _context.Students.Remove(student);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+
+            }
+
+            catch(DbUpdateException)
+            {
+                ModelState.AddModelError(string.Empty, "Make sure to delete on enrollments before deleting student");
+                var studentmodel = _mapper.Map<StudentModel>(await _context.Students.FindAsync(id));
+                return View("Delete", studentmodel);
+
+            }
+            
         }
 
         

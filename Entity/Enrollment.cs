@@ -1,4 +1,6 @@
-﻿namespace ContosoUniversity.Entity
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace ContosoUniversity.Entity
 {
     public enum Grade
     {
@@ -6,7 +8,8 @@
     }
 
     public class Enrollment
-    {
+    {   
+        [Key]
         public int EnrollmentID { get; set; }
         public int CourseID { get; set; }
         public int StudentID { get; set; }
