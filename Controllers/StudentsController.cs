@@ -55,7 +55,7 @@ namespace ContosoUniversity.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Create([Bind("ID,LastName,FirstMidName,EnrollmentDate")] StudentModel studentmodel)
+        public async Task<ActionResult> Create([Bind("ID,LastName,FirstMidName,JoinedDate")] StudentModel studentmodel)
         {
             if (ModelState.IsValid)
             {
@@ -109,7 +109,7 @@ namespace ContosoUniversity.Controllers
             var studentmodel = MappingFunctions.ToStudentModel(student);
 
             if (await TryUpdateModelAsync(studentmodel, "",
-                s => s.FirstMidName, s => s.LastName, s => s.EnrollmentDate))
+                s => s.FirstMidName, s => s.LastName, s => s.JoinedDate))
             {
               
                     var updatestudent = MappingFunctions.UpdateStudent(studentmodel, student);

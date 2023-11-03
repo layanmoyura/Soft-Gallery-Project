@@ -32,7 +32,7 @@
                 @Html.DisplayNameFor(model => model.FirstMidName)
             </th>
             <th>
-                <a asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParm"]">@Html.DisplayNameFor(model => model.EnrollmentDate)</a>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParm"]">@Html.DisplayNameFor(model => model.JoinedDate)</a>
             </th>
             <th></th>
         </tr>
@@ -51,7 +51,7 @@
                     @Html.DisplayFor(modelItem => item.FirstMidName)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.EnrollmentDate)
+                    @Html.DisplayFor(modelItem => item.JoinedDate)
                 </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |

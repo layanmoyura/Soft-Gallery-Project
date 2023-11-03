@@ -18,15 +18,11 @@
             <th>
                 @Html.DisplayNameFor(model => model.Grade)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CourseID)
-            </th>
+     
             <th>
                 @Html.DisplayNameFor(model => model.Course.Title)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.StudentID)
-            </th>
+           
             <th>
                 @Html.DisplayNameFor(model => model.Student.LastName)
             </th>
@@ -43,18 +39,14 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Grade)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CourseID)
-            </td>
+           
             <td>
                 @Html.DisplayFor(modelItem => item.Course.Title)
             </td>
+           
             <td>
-                @Html.DisplayFor(modelItem => item.StudentID)
+                @Html.DisplayFor(modelItem => item.Student.LastName)
             </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Student.LastName)
-                </td>
             
             <td>
                 <a asp-action="Edit" asp-route-id="@item.EnrollmentID">Edit</a> |

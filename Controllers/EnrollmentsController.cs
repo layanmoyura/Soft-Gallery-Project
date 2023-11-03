@@ -27,7 +27,7 @@ namespace ContosoUniversity.Controllers
             var selectList = new SelectList(items.Select(item => new SelectListItem
             {
                 Value = valueSelector(item),
-                Text = textSelector(item)
+                Text = textSelector(item)  //$"{valueSelector(item)}. {textSelector(item)}"
             }), "Value", "Text");
 
             return selectList;

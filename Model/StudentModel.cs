@@ -19,7 +19,7 @@ namespace PresentationLayer.Models
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
        
-        public DateTime EnrollmentDate { get; set; }
+        public DateTime JoinedDate { get; set; }
 
         public List<Enrollment> Enrollments { get; set; }
 
