@@ -78,7 +78,7 @@ namespace ContosoUniversity.Controllers
 
         
         [HttpPost]
-        public async Task<IActionResult> Create([Bind("EnrollmentID,CourseID,StudentID,Grade")] EnrollmentModel enrollmentmodel)
+        public async Task<IActionResult> Create([Bind("EnrollmentID,CourseID,StudentID,Grade,EnrollmentDate")] EnrollmentModel enrollmentmodel)
         {
             if (ModelState.IsValid)
             {
