@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Jf9i9pukoxuLPyTpGDqmPHMcTIwt38O0X7Y6iAkHHcY=",
+  "Hash": "asLhgY77OkySny3tEsX2KO0kVz7XVUAIsjKjp2dvc1Y=",
   "Source": "PresentationLayer",
   "BasePath": "_content/PresentationLayer",
   "Mode": "Default",
@@ -49,6 +49,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "D:\\Soft-Gallery-Project\\wwwroot\\js\\axios.min.js",
+      "SourceId": "PresentationLayer",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Soft-Gallery-Project\\wwwroot\\",
+      "BasePath": "_content/PresentationLayer",
+      "RelativePath": "js/axios.min.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\axios.min.js"
+    },
+    {
+      "Identity": "D:\\Soft-Gallery-Project\\wwwroot\\js\\enrollment.js",
+      "SourceId": "PresentationLayer",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Soft-Gallery-Project\\wwwroot\\",
+      "BasePath": "_content/PresentationLayer",
+      "RelativePath": "js/enrollment.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\enrollment.js"
     },
     {
       "Identity": "D:\\Soft-Gallery-Project\\wwwroot\\js\\site.js",

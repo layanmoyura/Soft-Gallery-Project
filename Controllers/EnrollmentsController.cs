@@ -27,7 +27,7 @@ namespace ContosoUniversity.Controllers
             var selectList = new SelectList(items.Select(item => new SelectListItem
             {
                 Value = valueSelector(item),
-                Text = textSelector(item)  //$"{valueSelector(item)}. {textSelector(item)}"
+                Text = $"{valueSelector(item)}. {textSelector(item)}"
             }), "Value", "Text");
 
             return selectList;
@@ -76,16 +76,23 @@ namespace ContosoUniversity.Controllers
             return View();
         }
 
-        
+
         [HttpPost]
-        public async Task<IActionResult> Create([Bind("EnrollmentID,CourseID,StudentID,Grade,EnrollmentDate")] EnrollmentModel enrollmentmodel)
+        public async Task<JsonResult> Create([Bind("EnrollmentID,CourseID,StudentID,Grade,EnrollmentDate")] EnrollmentModel enrollmentmodel)
         {
             if (ModelState.IsValid)
             {
-                var enrollment = MappingFunctions.ToEnrollment(enrollmentmodel);
-                await _enrollmentService.AddEnrollment(enrollment);
-                
-                return RedirectToAction(nameof(Index));
+                try
+                {
+                    var enrollment = MappingFunctions.ToEnrollment(enrollmentmodel);
+                    await _enrollmentService.AddEnrollment(enrollment);
+
+                    return Json(new { success = true });
+                }
+                catch (Exception ex)
+                {
+                    return Json(new { success = false, error = ex.Message });
+                }
             }
 
             var courses = await _enrollmentService.GetCourses();
@@ -96,10 +103,10 @@ namespace ContosoUniversity.Controllers
             ViewData["Student"] = CreateSelectList(students, s => s.ID.ToString(), s => s.LastName);
             ViewData["Grade"] = CreateSelectList(gradeValues, value => value.ToString(), value => Enum.GetName(typeof(Grade), value));
 
-            return View(enrollmentmodel);
-            
+            return Json(new { success = false, error = "Model validation failed" });
         }
-       
+
+
         // GET: Enrollments/Edit/5
         [HttpGet, ActionName("Edit")]
         public async Task<IActionResult> Edit(int? id)
@@ -131,35 +138,26 @@ namespace ContosoUniversity.Controllers
         // POST: Enrollments/Edit/5
         
         [HttpPost,ActionName("Edit")]
-        public async Task<IActionResult> EditPost(int? id)
+        public async Task<JsonResult> EditPost(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            
 
             var enrollment = await _enrollmentService.GetEnrollmentById(id.Value);
             var enrollmentmodel = MappingFunctions.ToEnrollmentModel(enrollment);
 
-            if (await TryUpdateModelAsync(enrollmentmodel,"",
+            if (await TryUpdateModelAsync(enrollmentmodel, "",
                 e => e.StudentID, e => e.CourseID, s => s.Grade
                 ))
             {
-               
+
                 var updateenrollment = MappingFunctions.UpdateEnrollment(enrollmentmodel, enrollment);
                 await _enrollmentService.UpdateEnrollment(updateenrollment);
-                return RedirectToAction(nameof(Index));        
+                return Json(new {  success = true, message = "Enrollment updated successfully" });        
             }
 
-            var courses = await _enrollmentService.GetCourses();
-            var students = await _enrollmentService.GetStudents();
-            var gradeValues = Enum.GetValues(typeof(Grade)).Cast<int>();
+            return Json(new { success = false, message = "Error updating enrollment" });
 
-            ViewData["Course"] = CreateSelectList(courses, c => c.CourseID.ToString(), c => c.Title);
-            ViewData["Student"] = CreateSelectList(students, s => s.ID.ToString(), s => s.LastName);
-            ViewData["Grade"] = CreateSelectList(gradeValues, value => value.ToString(), value => Enum.GetName(typeof(Grade), value));
 
-            return View(enrollmentmodel);
         }
 
         // GET: Enrollments/Delete/5
@@ -183,13 +181,22 @@ namespace ContosoUniversity.Controllers
 
         // POST: Enrollments/Delete/5
         [HttpPost, ActionName("Delete")]
-        public async Task<IActionResult> DeleteConfirmed(int? id)
+        
+        public async Task<JsonResult> DeleteConfirmed(int id)
         {
-            var enrollment = await _enrollmentService.GetEnrollmentById(id.Value);
-            await _enrollmentService.DeleteEnrollment(enrollment);
-            return RedirectToAction(nameof(Index));
+            try
+            {
+                var enrollment = await _enrollmentService.GetEnrollmentById(id);
+                await _enrollmentService.DeleteEnrollment(enrollment);
+                return Json(new { success = true });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, error = ex.Message });
+            }
         }
 
-       
+
+
     }
 }

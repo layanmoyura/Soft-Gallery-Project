@@ -9,6 +9,14 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "D:\\Soft-Gallery-Project\\wwwroot\\js\\axios.min.js",
+      "PackagePath": "staticwebassets\\js\\axios.min.js"
+    },
+    {
+      "Id": "D:\\Soft-Gallery-Project\\wwwroot\\js\\enrollment.js",
+      "PackagePath": "staticwebassets\\js\\enrollment.js"
+    },
+    {
       "Id": "D:\\Soft-Gallery-Project\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },
