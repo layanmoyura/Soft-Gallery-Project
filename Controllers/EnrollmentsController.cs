@@ -7,6 +7,7 @@ using PresentationLayer.helper;
 using BusinessLayer.Interfaces;
 using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace ContosoUniversity.Controllers
 {
@@ -34,7 +35,7 @@ namespace ContosoUniversity.Controllers
         }
 
         // GET: Enrollments
-        public async Task <ViewResult> Index()
+        public async Task<ViewResult> Index()
         {
             var enrollments = await _enrollmentService.GetAllEnrollments();
             var enrollmentmodels = MappingFunctions.ToEnrollmentModelList(enrollments);

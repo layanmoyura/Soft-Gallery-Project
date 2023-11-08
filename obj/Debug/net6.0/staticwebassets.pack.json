@@ -13,8 +13,20 @@
       "PackagePath": "staticwebassets\\js\\axios.min.js"
     },
     {
-      "Id": "D:\\Soft-Gallery-Project\\wwwroot\\js\\enrollment.js",
-      "PackagePath": "staticwebassets\\js\\enrollment.js"
+      "Id": "D:\\Soft-Gallery-Project\\wwwroot\\js\\enrollment\\enrollment-create.js",
+      "PackagePath": "staticwebassets\\js\\enrollment\\enrollment-create.js"
+    },
+    {
+      "Id": "D:\\Soft-Gallery-Project\\wwwroot\\js\\enrollment\\enrollment-delete.js",
+      "PackagePath": "staticwebassets\\js\\enrollment\\enrollment-delete.js"
+    },
+    {
+      "Id": "D:\\Soft-Gallery-Project\\wwwroot\\js\\enrollment\\enrollment-edit.js",
+      "PackagePath": "staticwebassets\\js\\enrollment\\enrollment-edit.js"
+    },
+    {
+      "Id": "D:\\Soft-Gallery-Project\\wwwroot\\js\\enrollment\\enrollment-index.js",
+      "PackagePath": "staticwebassets\\js\\enrollment\\enrollment-index.js"
     },
     {
       "Id": "D:\\Soft-Gallery-Project\\wwwroot\\js\\site.js",

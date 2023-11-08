@@ -12,6 +12,7 @@ using DataAccessLayer.Repositaries;
 using BusinessLayer.Interfaces;
 using BusinessLayer.Services;
 using DataAccessLayer.Repositories;
+using System.Text.Json.Serialization;
 
 namespace Soft_Gallery_Project
 {
@@ -32,7 +33,10 @@ namespace Soft_Gallery_Project
 
             services.AddDatabaseDeveloperPageExceptionFilter();
 
-            services.AddControllersWithViews();
+            services.AddControllersWithViews().AddJsonOptions(options =>
+            {
+                options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
+            }); 
 
             services.AddScoped<IStudentRepository, StudentRepository>();
             services.AddScoped<ICourseRepositary,CourseRepositary>();
