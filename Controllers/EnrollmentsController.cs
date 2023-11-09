@@ -34,13 +34,17 @@ namespace ContosoUniversity.Controllers
             return selectList;
         }
 
+        [HttpGet, ActionName("Index")]
         // GET: Enrollments
-        public async Task<ViewResult> Index()
+        public async Task<IActionResult> Index()
         {
             var enrollments = await _enrollmentService.GetAllEnrollments();
             var enrollmentmodels = MappingFunctions.ToEnrollmentModelList(enrollments);
-            return View(enrollmentmodels);
+            return View("Index", enrollmentmodels);
         }
+
+       
+
 
         // GET: Enrollments/Details/5
         public async Task<IActionResult> Details(int? id)

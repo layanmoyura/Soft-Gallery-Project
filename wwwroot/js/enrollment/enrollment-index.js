@@ -1,37 +1,15 @@
-     
 $(document).ready(function () {
-    // Make an AJAX GET request to your controller action
     $.ajax({
+        url: 'https://localhost:44309/Enrollments', // Replace ControllerName with your controller name
         type: 'GET',
-        url: 'https://localhost:44309/Enrollments/Index', // Replace 'YourController' with your actual controller name
-        dataType: 'json',
         success: function (data) {
-            if (data.success) {
-                console.log(data.enrollmentModels)
-                var enrollments = data.enrollmentModels;
-
+            if (data) {
+                $('#enrollmentTable').html(data);
+            } else {
                 
-                $('#enrollmentTable tbody').empty();
-
-               
-                enrollments.forEach(function (enrollment) {
-                    $('#enrollmentTable tbody').append(
-                        '<tr>' +
-                        '<td>' + enrollment.EnrollmentID + '</td>' +
-                        '<td>' + enrollment.Grade + '</td>' +
-                        '<td>' + enrollment.Course.Title + '</td>' +
-                        '<td>' + enrollment.Student.LastName + '</td>' +
-                        '<td>' + enrollment.EnrollmentDate + '</td>' +
-                        '</tr>'
-                    );
-                });
-
+                $('#errorModalBody').text('An error occurred. No data received.');
+                $('#errorModal').modal('show');
             }
-        },
-        error: function (error) {
-            console.log(error);
-            console.error('Error:', error);
         }
     });
 });
-
