@@ -8,6 +8,7 @@ using BusinessLayer.Interfaces;
 using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using DataAccessLayer.Entity;
 
 namespace ContosoUniversity.Controllers
 {
@@ -34,13 +35,18 @@ namespace ContosoUniversity.Controllers
             return selectList;
         }
 
-        [HttpGet, ActionName("Index")]
+        public ViewResult Index()
+        {
+            return View();
+        }
+
         // GET: Enrollments
-        public async Task<IActionResult> Index()
+        [HttpGet, ActionName("Get")]
+        public async Task<List<EnrollmentModel>> Indexget()
         {
             var enrollments = await _enrollmentService.GetAllEnrollments();
             var enrollmentmodels = MappingFunctions.ToEnrollmentModelList(enrollments);
-            return View("Index", enrollmentmodels);
+            return PartialView();
         }
 
        

@@ -1,15 +1,12 @@
 ﻿@model IEnumerable<PresentationLayer.Models.EnrollmentModel>
 
-@{
-    ViewData["Title"] = "Index";
-}
 
 <h1>Index</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
+<table class="table" id="enrollmentTable">
     <thead>
         <tr>
             <th>
@@ -34,34 +31,6 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.EnrollmentID)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Grade)
-                </td>
-
-                <td>
-                    @Html.DisplayFor(modelItem => item.Course.Title)
-                </td>
-
-                <td>
-                    @Html.DisplayFor(modelItem => item.Student.LastName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.EnrollmentDate)
-                </td>
-
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.EnrollmentID">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.EnrollmentID">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.EnrollmentID">Delete</a>
-                </td>
-            </tr>
-        }
     </tbody>
 </table>
 
