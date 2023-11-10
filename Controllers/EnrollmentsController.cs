@@ -46,7 +46,7 @@ namespace ContosoUniversity.Controllers
         {
             var enrollments = await _enrollmentService.GetAllEnrollments();
             var enrollmentmodels = MappingFunctions.ToEnrollmentModelList(enrollments);
-            return PartialView();
+            return enrollmentmodels;
         }
 
        
@@ -153,7 +153,7 @@ namespace ContosoUniversity.Controllers
         {
             
 
-            var enrollment = await _enrollmentService.GetEnrollmentById(id.Value);
+            var enrollment = await _enrollmentService.GetEnrollmentOnlyById(id.Value);
             var enrollmentmodel = MappingFunctions.ToEnrollmentModel(enrollment);
 
             if (await TryUpdateModelAsync(enrollmentmodel, "",

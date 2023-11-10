@@ -1,6 +1,4 @@
-﻿
-using DataAccessLayer.Entity;
-using System;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
 
 public enum Grade
@@ -23,9 +21,10 @@ namespace PresentationLayer.Models
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime EnrollmentDate { get; set; }
         public Grade? Grade { get; set; }
+        public string DisplayGrade => Grade?.ToString();
 
-        public Course Course { get; set; }
-        public Student Student { get; set; }
+        public CourseModel Course { get; set; }
+        public StudentModel Student { get; set; }
 
 
     }
