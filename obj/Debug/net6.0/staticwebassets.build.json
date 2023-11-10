@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "1d4e72EXAZQ8TtbVgQDVgtk7p0qiOIbK+Dh54ZcJim8=",
+  "Hash": "aGsVqJrfUEYSpSZmqJ6cARMLGWXz2zfUlIFgbsqDnBo=",
   "Source": "PresentationLayer",
   "BasePath": "_content/PresentationLayer",
   "Mode": "Default",
@@ -100,6 +100,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\enrollment\\enrollment-delete.js"
+    },
+    {
+      "Identity": "D:\\Soft-Gallery-Project\\wwwroot\\js\\enrollment\\enrollment-details.js",
+      "SourceId": "PresentationLayer",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Soft-Gallery-Project\\wwwroot\\",
+      "BasePath": "_content/PresentationLayer",
+      "RelativePath": "js/enrollment/enrollment-details.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\enrollment\\enrollment-details.js"
     },
     {
       "Identity": "D:\\Soft-Gallery-Project\\wwwroot\\js\\enrollment\\enrollment-edit.js",

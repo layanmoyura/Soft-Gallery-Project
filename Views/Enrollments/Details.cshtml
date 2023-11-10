@@ -1,4 +1,4 @@
-﻿@model PresentationLayer.Models.EnrollmentModel
+﻿@model int?
 
 @{
     ViewData["Title"] = "Details";
@@ -11,32 +11,67 @@
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.EnrollmentID)
+            Enrollment ID
         </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.EnrollmentID)
+        <dd class="col-sm-10" id="enrollmentID"> @Model
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Grade)
+        <dt class="col-sm-2">
+            Grade
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Grade)
+        <dd class="col-sm-10" id="grade">
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Course)
+        <dt class="col-sm-2">
+            Course Details
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CourseID)
+        <dd class="col-sm-10" id="courseDetails">
+            <dl class="row">
+
+                <dt class="col-sm-2">
+                    Course Title
+                </dt>
+                <dd class="col-sm-10" id="courseTitle">
+
+                </dd>
+                <dt class="col-sm-2">
+                    Course Credits
+                </dt>
+                <dd class="col-sm-10" id="courseCredits">
+                    
+                </dd>
+                
+            </dl>
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Student)
+
+        <dt class="col-sm-2">
+            Student Details
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.StudentID)
+        <dd class="col-sm-10" id="studentDetails">
+            <dl class="row">
+                <dt class="col-sm-2">
+                    First Name
+                </dt>
+                <dd class="col-sm-10" id="studentFirstName">
+                   
+                </dd>
+                <dt class="col-sm-2">
+                    Last Name
+                </dt>
+                <dd class="col-sm-10" id="studentLastName">
+                    
+                </dd>
+                <dt class="col-sm-2">
+                    Joined Date
+                </dt>
+                <dd class="col-sm-10" id="studentJoinedDate">
+                    
+                </dd>
+            </dl>
         </dd>
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.EnrollmentID">Edit</a> |
+    <a asp-action="Edit" asp-route-id=@Model>Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>
+
+<script src="~/js/enrollment/enrollment-details.js"></script>

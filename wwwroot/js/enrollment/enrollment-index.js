@@ -1,6 +1,6 @@
 $(document).ready(function () {
     $.ajax({
-        url: 'https://localhost:44309/Enrollments/Get', // Use the correct route to your API endpoint
+        url: 'https://localhost:44309/Enrollments/IndexGet', // Use the correct route to your API endpoint
         type: 'GET',
         success: function (data) {
             if (data) {

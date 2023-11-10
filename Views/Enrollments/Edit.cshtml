@@ -10,27 +10,27 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form id="frmEnrollement">
+        <form id="frmEnrollment">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="EnrollmentID" />
             <div class="form-group">
                 <label asp-for="CourseID" class="control-label"></label>
-                @Html.DropDownListFor(m => m.CourseID, ViewBag.Course as SelectList, new { @class = "form-control course" })
+                @Html.DropDownListFor(m => m.CourseID, ViewBag.Course as SelectList, new { @class = "form-control inputs" })
                 <span asp-validation-for="CourseID" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="StudentID" class="control-label"></label>
-                <select asp-for="StudentID" class="form-control" asp-items="ViewBag.Student"></select>
+                <select asp-for="StudentID" class="form-control inputs" asp-items="ViewBag.Student"></select>
                 <span asp-validation-for="StudentID" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Grade" class="control-label"></label>
-                <select asp-for="Grade" class="form-control" asp-items="ViewBag.Grade"></select>
+                <select asp-for="Grade" class="form-control inputs" asp-items="ViewBag.Grade"></select>
                 <span asp-validation-for="Grade" class="text-danger"></span>
             </div>
             <input type="hidden" asp-for="EnrollmentDate" value="@DateTime.Now" />
             <div class="form-group">
-                <input type="button" value="Save" class="btn btn-primary update-enrollement" id="btnUpdate" />
+                <input type="submit" value="Save" class="btn btn-primary update-enrollement" id="btnUpdate" />
             </div>
         </form>
     </div>

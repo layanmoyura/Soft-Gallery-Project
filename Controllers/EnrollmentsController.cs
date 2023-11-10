@@ -41,34 +41,38 @@ namespace ContosoUniversity.Controllers
         }
 
         // GET: Enrollments
-        [HttpGet, ActionName("Get")]
-        public async Task<List<EnrollmentModel>> Indexget()
+        [HttpGet, ActionName("IndexGet")]
+        public async Task<List<EnrollmentModel>> IndexGet()
         {
             var enrollments = await _enrollmentService.GetAllEnrollments();
             var enrollmentmodels = MappingFunctions.ToEnrollmentModelList(enrollments);
             return enrollmentmodels;
         }
 
-       
 
+        public ViewResult Details(int? id)
+        {
+            return View(id);
+        }
 
         // GET: Enrollments/Details/5
-        public async Task<IActionResult> Details(int? id)
+        [HttpGet, ActionName("DetailsGet")]
+        public async Task<EnrollmentModel> DetailsGet(int? id)
         {
             if (id == null)
             {
-                return NotFound();
+                return null;
             }
 
             var enrollment = await _enrollmentService.GetEnrollmentById(id.Value);
             if (enrollment == null)
             {
-                return NotFound();
+                return null;
             }
 
             var enrollmentmodel = MappingFunctions.ToEnrollmentModel(enrollment);
 
-            return View(enrollmentmodel);
+            return enrollmentmodel;
         }
 
  
