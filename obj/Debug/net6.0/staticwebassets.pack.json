@@ -13,28 +13,68 @@
       "PackagePath": "staticwebassets\\js\\axios.min.js"
     },
     {
-      "Id": "D:\\Soft-Gallery-Project\\wwwroot\\js\\enrollment\\enrollment-create.js",
-      "PackagePath": "staticwebassets\\js\\enrollment\\enrollment-create.js"
+      "Id": "D:\\Soft-Gallery-Project\\wwwroot\\js\\course\\course.create.js",
+      "PackagePath": "staticwebassets\\js\\course\\course.create.js"
     },
     {
-      "Id": "D:\\Soft-Gallery-Project\\wwwroot\\js\\enrollment\\enrollment-delete.js",
-      "PackagePath": "staticwebassets\\js\\enrollment\\enrollment-delete.js"
+      "Id": "D:\\Soft-Gallery-Project\\wwwroot\\js\\course\\course.delete.js",
+      "PackagePath": "staticwebassets\\js\\course\\course.delete.js"
     },
     {
-      "Id": "D:\\Soft-Gallery-Project\\wwwroot\\js\\enrollment\\enrollment-details.js",
-      "PackagePath": "staticwebassets\\js\\enrollment\\enrollment-details.js"
+      "Id": "D:\\Soft-Gallery-Project\\wwwroot\\js\\course\\course.details.js",
+      "PackagePath": "staticwebassets\\js\\course\\course.details.js"
     },
     {
-      "Id": "D:\\Soft-Gallery-Project\\wwwroot\\js\\enrollment\\enrollment-edit.js",
-      "PackagePath": "staticwebassets\\js\\enrollment\\enrollment-edit.js"
+      "Id": "D:\\Soft-Gallery-Project\\wwwroot\\js\\course\\course.edit.js",
+      "PackagePath": "staticwebassets\\js\\course\\course.edit.js"
     },
     {
-      "Id": "D:\\Soft-Gallery-Project\\wwwroot\\js\\enrollment\\enrollment-index.js",
-      "PackagePath": "staticwebassets\\js\\enrollment\\enrollment-index.js"
+      "Id": "D:\\Soft-Gallery-Project\\wwwroot\\js\\course\\course.index.js",
+      "PackagePath": "staticwebassets\\js\\course\\course.index.js"
+    },
+    {
+      "Id": "D:\\Soft-Gallery-Project\\wwwroot\\js\\enrollment\\enrollment.create.js",
+      "PackagePath": "staticwebassets\\js\\enrollment\\enrollment.create.js"
+    },
+    {
+      "Id": "D:\\Soft-Gallery-Project\\wwwroot\\js\\enrollment\\enrollment.delete.js",
+      "PackagePath": "staticwebassets\\js\\enrollment\\enrollment.delete.js"
+    },
+    {
+      "Id": "D:\\Soft-Gallery-Project\\wwwroot\\js\\enrollment\\enrollment.details.js",
+      "PackagePath": "staticwebassets\\js\\enrollment\\enrollment.details.js"
+    },
+    {
+      "Id": "D:\\Soft-Gallery-Project\\wwwroot\\js\\enrollment\\enrollment.edit.js",
+      "PackagePath": "staticwebassets\\js\\enrollment\\enrollment.edit.js"
+    },
+    {
+      "Id": "D:\\Soft-Gallery-Project\\wwwroot\\js\\enrollment\\enrollment.index.js",
+      "PackagePath": "staticwebassets\\js\\enrollment\\enrollment.index.js"
     },
     {
       "Id": "D:\\Soft-Gallery-Project\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
+    },
+    {
+      "Id": "D:\\Soft-Gallery-Project\\wwwroot\\js\\student\\student.create.js",
+      "PackagePath": "staticwebassets\\js\\student\\student.create.js"
+    },
+    {
+      "Id": "D:\\Soft-Gallery-Project\\wwwroot\\js\\student\\student.delete.js",
+      "PackagePath": "staticwebassets\\js\\student\\student.delete.js"
+    },
+    {
+      "Id": "D:\\Soft-Gallery-Project\\wwwroot\\js\\student\\student.details.js",
+      "PackagePath": "staticwebassets\\js\\student\\student.details.js"
+    },
+    {
+      "Id": "D:\\Soft-Gallery-Project\\wwwroot\\js\\student\\student.edit.js",
+      "PackagePath": "staticwebassets\\js\\student\\student.edit.js"
+    },
+    {
+      "Id": "D:\\Soft-Gallery-Project\\wwwroot\\js\\student\\student.index.js",
+      "PackagePath": "staticwebassets\\js\\student\\student.index.js"
     },
     {
       "Id": "D:\\Soft-Gallery-Project\\wwwroot\\lib\\bootstrap\\LICENSE",

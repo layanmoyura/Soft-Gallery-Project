@@ -17,9 +17,15 @@ namespace ContosoUniversity.Controllers
             this.studentServices = studentServices;            
         }
 
-        //READ
 
-        public async Task<ViewResult> Index(string sortOrder, string searchString)
+        //READ
+        public ViewResult Index()
+        {
+            return View();
+        }
+
+        [HttpGet, ActionName("IndexGet")]
+        public async Task<IActionResult> IndexGet(string sortOrder, string searchString)
         {
             ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewData["DateSortParm"] = sortOrder == "Date" ? "date_desc" : "Date";
@@ -27,13 +33,21 @@ namespace ContosoUniversity.Controllers
 
             var students = await studentServices.GetStudentsAsync(sortOrder, searchString);
 
-            var studentmodels = MappingFunctions.ToStudentModelList(students);
+            var studentModels = MappingFunctions.ToStudentModelList(students);
 
-            return View(studentmodels);
+            return PartialView("~/Views/Students/PartialViews/IndexPartial.cshtml", studentModels);
         }
 
 
-        public async Task<IActionResult> Details(int? id)
+        public ViewResult Details(int? id)
+        {
+            return View(id);
+        }
+
+
+        // GET: Courses/Details/5
+        [HttpGet, ActionName("DetailsGet")]
+        public async Task<IActionResult> DetailsGet(int? id)
         {
             if (id == null)
             {
@@ -41,10 +55,14 @@ namespace ContosoUniversity.Controllers
             }
 
             var student = await studentServices.GetStudentDetailsAsync(id.Value);
+            if (student == null)
+            {
+                return NotFound();
+            }
 
-            var studentmodel = MappingFunctions.ToStudentModel(student);
+            var studentModel = MappingFunctions.ToStudentModel(student);
 
-            return View(studentmodel);
+            return PartialView("~/Views/Students/PartialViews/DetailsPartial.cshtml", studentModel);
         }
 
 
@@ -55,16 +73,23 @@ namespace ContosoUniversity.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Create([Bind("ID,LastName,FirstMidName,JoinedDate")] StudentModel studentmodel)
+        public async Task<JsonResult> Create([Bind("ID,LastName,FirstMidName,JoinedDate")] StudentModel studentmodel)
         {
             if (ModelState.IsValid)
             {
-                var student = MappingFunctions.ToStudent(studentmodel);
-                await studentServices.CreateStudentAsync(student);
-                return RedirectToAction(nameof(Index));
-            }
+                try
+                {
+                    var student = MappingFunctions.ToStudent(studentmodel);
+                    await studentServices.CreateStudentAsync(student);
+                    return Json(new { success = true });
+                }
+                catch (Exception ex)
+                {
+                    return Json(new { success = false, error = ex.Message });
+                }
 
-            return View(studentmodel);
+            }
+            return Json(new { success = false, error = "Model validation failed" });
         }
 
 
@@ -99,12 +124,9 @@ namespace ContosoUniversity.Controllers
 
         [HttpPost, ActionName("Edit")]
      
-        public async Task<IActionResult> EditPost(int? id)
+        public async Task<JsonResult> EditPost(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+           
             var student = await studentServices.GetStudentById(id.Value);
             var studentmodel = MappingFunctions.ToStudentModel(student);
 
@@ -114,10 +136,10 @@ namespace ContosoUniversity.Controllers
               
                     var updatestudent = MappingFunctions.UpdateStudent(studentmodel, student);
                     await studentServices.UpdateStudentAsync(updatestudent);
-                    return RedirectToAction(nameof(Index));
-                  
+                    return Json(new { success = true, message = "Student updated successfully" });
+
             }
-            return View(studentmodel);
+            return Json(new { success = false, message = "Error updating student" });
         }
 
 
@@ -146,18 +168,16 @@ namespace ContosoUniversity.Controllers
 
         // POST: Students/Delete/5
         [HttpPost, ActionName("Delete")]
-        public async Task<IActionResult> DeleteConfirm(int? id)
+        public async Task<JsonResult> DeleteConfirm(int? id)
         {
             try
             {
                 await studentServices.DeleteStudentAsync(id.Value);
-                return RedirectToAction(nameof(Index));
+                return Json(new { success = true });
             }
             
-            catch(DbUpdateException){
-                ModelState.AddModelError(string.Empty, "Make sure to delete on enrollments before deleting student");
-                var studentmodel = MappingFunctions.ToStudentModel(await studentServices.GetStudentById(id.Value));
-                return View("Delete", studentmodel);
+            catch(Exception ex){
+                return Json(new { success = false, error = ex.Message });
             }
         }
 

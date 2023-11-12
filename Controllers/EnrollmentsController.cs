@@ -65,6 +65,7 @@ namespace ContosoUniversity.Controllers
             }
 
             var enrollment = await _enrollmentService.GetEnrollmentById(id.Value);
+
             if (enrollment == null)
             {
                 return null;

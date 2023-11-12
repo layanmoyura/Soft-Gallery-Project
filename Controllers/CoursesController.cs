@@ -5,6 +5,8 @@ using PresentationLayer.helper;
 using BusinessLayer.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using BusinessLayer.Services;
+using System;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace ContosoUniversity.Controllers
 {
@@ -19,15 +21,28 @@ namespace ContosoUniversity.Controllers
         }
 
         // GET: Courses
-        public async Task<IActionResult> Index()
+        public  ViewResult Index()
         {
-            var course = await _courseServices.GetCoursesAsync();
-            var coursemodels = MappingFunctions.ToCourseModelList(course);
-            return View(coursemodels);
+            return View();
         }
 
+        [HttpGet, ActionName("IndexGet")]
+        public async Task<IActionResult> IndexGet()
+        {
+            var courses = await _courseServices.GetCoursesAsync();
+            var courseModels = MappingFunctions.ToCourseModelList(courses);
+            return PartialView("~/Views/Courses/PartialViews/IndexPartial.cshtml", courseModels);
+        }
+
+        public ViewResult Details(int? id)
+        {
+            return View(id);
+        }
+
+
         // GET: Courses/Details/5
-        public async Task<IActionResult> Details(int? id)
+        [HttpGet, ActionName("DetailsGet")]
+        public async Task<IActionResult> DetailsGet(int? id)
         {
             if (id == null)
             {
@@ -42,7 +57,7 @@ namespace ContosoUniversity.Controllers
 
             var coursemodel = MappingFunctions.ToCourseModel(course);
 
-            return View(coursemodel);
+            return PartialView("~/Views/Courses/PartialViews/DetailsPartial.cshtml", coursemodel);
         }
 
         // GET: Courses/Create
@@ -53,15 +68,30 @@ namespace ContosoUniversity.Controllers
 
         [HttpPost]
         
-        public async Task<IActionResult> Create([Bind("CourseID,Title,Credits")] CourseModel coursemodel)
+        public async Task<JsonResult> Create([Bind("CourseID,Title,Credits")] CourseModel coursemodel)
         {
             if (ModelState.IsValid)
             {
-                var course = MappingFunctions.ToCourse(coursemodel);
-                await _courseServices.AddCourseAsync(course);
-                return RedirectToAction(nameof(Index));
+                try
+                {
+
+
+                    var course = MappingFunctions.ToCourse(coursemodel);
+                    await _courseServices.AddCourseAsync(course);
+                    return Json(new { success = true });
+
+
+                }
+                catch (Exception ex)
+                {
+                    return Json(new { success = false, error = ex.Message });
+                }
+
             }
-            return View(coursemodel);
+                
+
+            return Json(new { success = false, error = "Model validation failed" });
+
         }
 
         // GET: Courses/Edit/5
@@ -92,13 +122,9 @@ namespace ContosoUniversity.Controllers
         
         [HttpPost, ActionName("Edit")]
         
-        public async Task<IActionResult> EditPost(int? id)
+        public async Task<JsonResult> EditPost(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
+            
             var course = await _courseServices.GetCourseByIdAsync(id.Value);
             var coursemodel = MappingFunctions.ToCourseModel(course);
 
@@ -106,14 +132,15 @@ namespace ContosoUniversity.Controllers
                 c => c.CourseID, c => c.Title, c => c.Credits
                 ))
             {
-                 
+                
                     var updatecourse = MappingFunctions.UpdateCourse(coursemodel,course);
                     await _courseServices.UpdateCourseAsync(updatecourse);
-                    return RedirectToAction(nameof(Index));
-                
+                    return Json(new { success = true, message = "Enrollment updated successfully" });
+
             }
-            return View(coursemodel);
+            return Json(new { success = false, message = "Error updating course" });
         }
+
         public IActionResult Delete()
         {
             return View();
@@ -142,23 +169,19 @@ namespace ContosoUniversity.Controllers
 
         // POST: Courses/Delete/5
         [HttpPost, ActionName("Delete")]
-        
-        public async Task<IActionResult> DeleteConfirm(int? id)
+        public async Task<JsonResult> DeleteConfirmed(int id)
         {
             try
             {
-                var course = await _courseServices.GetCourseByIdAsync(id.Value);
+                var course = await _courseServices.GetCourseByIdAsync(id);
                 await _courseServices.DeleteCourseAsync(course);
-                return RedirectToAction(nameof(Index));
+                return Json(new { success = true });
             }
-
-            catch (DbUpdateException)
+            catch (Exception ex)
             {
-                ModelState.AddModelError(string.Empty, "Make sure to delete on enrollments before deleting course");
-                var coursemodel = MappingFunctions.ToCourseModel(await _courseServices.GetCourseByIdAsync(id.Value));
-                return View("Delete", coursemodel);
+                return Json(new { success = false, error = ex.Message });
             }
-           
         }
+
     }
 }
