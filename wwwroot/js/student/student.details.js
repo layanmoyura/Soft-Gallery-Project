@@ -1,10 +1,10 @@
 $(document).ready(function () {
 
-    loadCourse();
+    loadStudent();
 });
 
 
-function loadCourse() {
+function loadStudent() {
     var id = $('#ID').val();
     console.log(id);
     var url = 'https://localhost:44309/Students/DetailsGet/'+id;
@@ -18,6 +18,8 @@ function loadCourse() {
             $('#studentDetails').html(data);
         },
         error: function (error) {
+            $('#errorModalBody').text('An error occurred while retrieving the student');
+            $('#errorModal').modal('show');
             console.error('Error:', error);
         }
     });

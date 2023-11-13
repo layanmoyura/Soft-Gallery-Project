@@ -16,7 +16,10 @@ function loadCoursesList() {
             $('#courseList').html(data);
         },
         error: function (error) {
+            $('#errorModalBody').text('An error occurred while retrieving the courses');
+            $('#errorModal').modal('show');
             console.error('Error:', error);
+
         }
     });
 }    

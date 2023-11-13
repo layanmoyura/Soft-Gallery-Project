@@ -18,6 +18,8 @@ function loadCourse() {
             $('#courseDetails').html(data);
         },
         error: function (error) {
+            $('#errorModalBody').text('An error occurred while retrieving the course');
+            $('#errorModal').modal('show');
             console.error('Error:', error);
         }
     });
