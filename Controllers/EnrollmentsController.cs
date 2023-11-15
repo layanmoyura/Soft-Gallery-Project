@@ -40,11 +40,11 @@ namespace ContosoUniversity.Controllers
 
         // GET: Enrollments
         [HttpGet, ActionName("IndexGet")]
-        public async Task<List<EnrollmentModel>> IndexGet()
+        public async Task<ActionResult> IndexGet()
         {
             var enrollments = await _enrollmentService.GetAllEnrollments();
             var enrollmentmodels = MappingFunctions.ToEnrollmentModelList(enrollments);
-            return enrollmentmodels;
+            return PartialView("~/Views/Enrollments/PartialViews/IndexPartial.cshtml", enrollmentmodels);
         }
 
 

@@ -1,0 +1,84 @@
+﻿@model IEnumerable<PresentationLayer.Models.EnrollmentModel>
+
+<table class="table" id="enrollmentTable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.EnrollmentID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Grade)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Course.Title)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Student.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EnrollmentDate)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EnrollmentID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Grade)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Course.Title)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Student.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EnrollmentDate)
+                </td>
+
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.EnrollmentID" class="btn btn-warning btn-sm">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.EnrollmentID" class=" btn btn-info btn-sm">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.EnrollmentID" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script>
+    $(document).ready(function () {
+        $('#enrollmentTable').DataTable({
+            paging: true,
+            lengthMenu: [10, 25, 50, 100],
+            pageLength: 5,
+            ordering: true,
+            searching: true,
+            responsive: true,
+            columnDefs: [
+                { orderable: false, targets: -1 }
+            ],
+            language: {
+                lengthMenu: "Show _MENU_ entries",
+                search: "Search:",
+                info: "Showing _START_ to _END_ of _TOTAL_ entries",
+                paginate: {
+                    first: "First",
+                    last: "Last",
+                    next: "Next",
+                    previous: "Previous"
+                }
+            }
+        });
+    });
+</script>

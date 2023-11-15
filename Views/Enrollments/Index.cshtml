@@ -9,33 +9,9 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table" id="enrollmentTable">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.EnrollmentID)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Grade)
-            </th>
+<div id="enrollmentList">
 
-            <th>
-                @Html.DisplayNameFor(model => model.Course.Title)
-            </th>
-
-            <th>
-                @Html.DisplayNameFor(model => model.Student.LastName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.EnrollmentDate)
-            </th>
-
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-    </tbody>
-</table>
+</div>
 
 <div class="modal fade" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="errorModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
