@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<PresentationLayer.Models.CourseModel>
 
-<table class="table">
+<table class="table" id="courseTable">
     <thead>
         <tr>
             <th>
@@ -29,11 +29,39 @@
                     @Html.DisplayFor(modelItem => item.Credits)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.CourseID">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.CourseID">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.CourseID">Delete</a>
+                    <a asp-action="Edit" asp-route-id="@item.CourseID" class="btn btn-warning btn-sm">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.CourseID" class="btn btn-info btn-sm">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.CourseID" class="btn btn-danger btn-sm">Delete</a>
                 </td>
             </tr>
         }
     </tbody>
 </table>
+
+<script>
+    $(document).ready(function () {
+        $('#courseTable').DataTable({
+            paging: true,
+            lengthMenu: [10, 25, 50, 100],
+            pageLength: 5,
+            ordering: true, 
+            searching: true, 
+            responsive: true, 
+            columnDefs: [
+                { orderable: false, targets: -1 } 
+            ],
+            language: {
+                
+                lengthMenu: "Show _MENU_ entries",
+                search: "Search:",
+                info: "Showing _START_ to _END_ of _TOTAL_ entries",
+                paginate: {
+                    first: "First",
+                    last: "Last",
+                    next: "Next",
+                    previous: "Previous"
+                }
+            }
+        });
+    });
+</script>

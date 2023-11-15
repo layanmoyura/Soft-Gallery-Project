@@ -20,7 +20,7 @@ $(document).ready(function () {
                     row += "<td>" + item.course.title + "</td>";
                     row += "<td>" + item.student.lastName + "</td>";
                     row += "<td>" + item.enrollmentDate + "</td>";
-                    row += "<td><a href='https://localhost:44309/Enrollments/Edit/" + item.enrollmentID + "'>Edit</a> | <a href='https://localhost:44309/Enrollments/Details/" + item.enrollmentID + "'>Details</a> | <a href='https://localhost:44309/Enrollments/Delete/" + item.enrollmentID + "'>Delete</a></td>";
+                    row += "<td><a  href='https://localhost:44309/Enrollments/Edit/" + item.enrollmentID + "'>Edit</a> | <a href='https://localhost:44309/Enrollments/Details/" + item.enrollmentID + "'>Details</a> | <a href='https://localhost:44309/Enrollments/Delete/" + item.enrollmentID + "'>Delete</a></td>";
                     row += "</tr>";
                     $('#enrollmentTable tbody').append(row);
                 }

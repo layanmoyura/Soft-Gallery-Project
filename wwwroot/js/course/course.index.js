@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-    loadCoursesList();
+    loadCoursesList();    
 });
 
 
@@ -23,3 +23,4 @@ function loadCoursesList() {
         }
     });
 }    
+

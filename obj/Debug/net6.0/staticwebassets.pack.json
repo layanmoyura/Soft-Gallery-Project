@@ -161,6 +161,22 @@
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
     },
     {
+      "Id": "D:\\Soft-Gallery-Project\\wwwroot\\lib\\datatables\\datatables.css",
+      "PackagePath": "staticwebassets\\lib\\datatables\\datatables.css"
+    },
+    {
+      "Id": "D:\\Soft-Gallery-Project\\wwwroot\\lib\\datatables\\datatables.js",
+      "PackagePath": "staticwebassets\\lib\\datatables\\datatables.js"
+    },
+    {
+      "Id": "D:\\Soft-Gallery-Project\\wwwroot\\lib\\datatables\\datatables.min.css",
+      "PackagePath": "staticwebassets\\lib\\datatables\\datatables.min.css"
+    },
+    {
+      "Id": "D:\\Soft-Gallery-Project\\wwwroot\\lib\\datatables\\datatables.min.js",
+      "PackagePath": "staticwebassets\\lib\\datatables\\datatables.min.js"
+    },
+    {
       "Id": "D:\\Soft-Gallery-Project\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
       "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
     },

@@ -7,8 +7,6 @@ using PresentationLayer.helper;
 using BusinessLayer.Interfaces;
 using System;
 using System.Collections.Generic;
-using Newtonsoft.Json;
-using DataAccessLayer.Entity;
 
 namespace ContosoUniversity.Controllers
 {
