@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "FERvdS8xR8gyWTHVo9FuOBySiKzKSSBnmzW1i/PsnZ0=",
+  "Hash": "bBLg1ACsDMRE1mXPyx/yM5FVdyFRany2K/BhykwiM2A=",
   "Source": "PresentationLayer",
   "BasePath": "_content/PresentationLayer",
   "Mode": "Default",
@@ -695,40 +695,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\LICENSE"
-    },
-    {
-      "Identity": "D:\\Soft-Gallery-Project\\wwwroot\\lib\\datatables\\datatables.css",
-      "SourceId": "PresentationLayer",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\Soft-Gallery-Project\\wwwroot\\",
-      "BasePath": "_content/PresentationLayer",
-      "RelativePath": "lib/datatables/datatables.css",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\lib\\datatables\\datatables.css"
-    },
-    {
-      "Identity": "D:\\Soft-Gallery-Project\\wwwroot\\lib\\datatables\\datatables.js",
-      "SourceId": "PresentationLayer",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\Soft-Gallery-Project\\wwwroot\\",
-      "BasePath": "_content/PresentationLayer",
-      "RelativePath": "lib/datatables/datatables.js",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\lib\\datatables\\datatables.js"
     },
     {
       "Identity": "D:\\Soft-Gallery-Project\\wwwroot\\lib\\datatables\\datatables.min.css",

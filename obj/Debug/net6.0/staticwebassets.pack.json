@@ -161,14 +161,6 @@
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
     },
     {
-      "Id": "D:\\Soft-Gallery-Project\\wwwroot\\lib\\datatables\\datatables.css",
-      "PackagePath": "staticwebassets\\lib\\datatables\\datatables.css"
-    },
-    {
-      "Id": "D:\\Soft-Gallery-Project\\wwwroot\\lib\\datatables\\datatables.js",
-      "PackagePath": "staticwebassets\\lib\\datatables\\datatables.js"
-    },
-    {
       "Id": "D:\\Soft-Gallery-Project\\wwwroot\\lib\\datatables\\datatables.min.css",
       "PackagePath": "staticwebassets\\lib\\datatables\\datatables.min.css"
     },
