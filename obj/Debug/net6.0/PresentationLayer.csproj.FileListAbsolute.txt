@@ -146,3 +146,4 @@ D:\Soft-Gallery-Project\obj\Debug\net6.0\refint\PresentationLayer.dll
 D:\Soft-Gallery-Project\obj\Debug\net6.0\PresentationLayer.pdb
 D:\Soft-Gallery-Project\obj\Debug\net6.0\PresentationLayer.genruntimeconfig.cache
 D:\Soft-Gallery-Project\obj\Debug\net6.0\ref\PresentationLayer.dll
+D:\Soft-Gallery-Project\bin\Debug\net6.0\Xamarin.Essentials.dll
