@@ -24,12 +24,11 @@ function setupCourseForm() {
                     setTimeout(function () {
                         window.location.href = 'https://localhost:44309/Courses/Index';
                     }, 2000);
-                } else {
-                    $('#errorModalBody').text('An error occurred while creating the course');
-                    $('#errorModal').modal('show');
-                }
+                } 
             },
             error: function (error) {
+                $('#errorModalBody').text('An error occurred while creating the course');
+                $('#errorModal').modal('show');
                 console.error('Error:', error);
             }
         });

@@ -9,6 +9,7 @@
       "PresentationLayer/1.0.0": {
         "dependencies": {
           "AutoMapper": "5.0.0",
+          "BCrypt.Net-Next": "4.0.3",
           "BusinessLogicLayer": "1.0.0",
           "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": "5.0.0",
           "Microsoft.EntityFrameworkCore.SqlServer": "5.0.17",
@@ -49,6 +50,14 @@
           "lib/netstandard1.3/AutoMapper.dll": {
             "assemblyVersion": "5.0.0.0",
             "fileVersion": "5.0.0.0"
+          }
+        }
+      },
+      "BCrypt.Net-Next/4.0.3": {
+        "runtime": {
+          "lib/net6.0/BCrypt.Net-Next.dll": {
+            "assemblyVersion": "4.0.3.0",
+            "fileVersion": "4.0.3.0"
           }
         }
       },
@@ -1548,6 +1557,7 @@
       "BusinessLogicLayer/1.0.0": {
         "dependencies": {
           "AutoMapper": "5.0.0",
+          "BCrypt.Net-Next": "4.0.3",
           "DataAccessLayer": "1.0.0",
           "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": "5.0.0",
           "Microsoft.EntityFrameworkCore.SqlServer": "5.0.17",
@@ -1584,6 +1594,13 @@
       "sha512": "sha512-yG2ZCQ+RxpE+qSdW8/M8bRkg00GZYMmjyve07YnNwI6m7ct9QkmUVfxmhPnKp6DcjElcrfjN/RJ/qCXfkChPuA==",
       "path": "automapper/5.0.0",
       "hashPath": "automapper.5.0.0.nupkg.sha512"
+    },
+    "BCrypt.Net-Next/4.0.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-W+U9WvmZQgi5cX6FS5GDtDoPzUCV4LkBLkywq/kRZhuDwcbavOzcDAr3LXJFqHUi952Yj3LEYoWW0jbEUQChsA==",
+      "path": "bcrypt.net-next/4.0.3",
+      "hashPath": "bcrypt.net-next.4.0.3.nupkg.sha512"
     },
     "Humanizer.Core/2.8.26": {
       "type": "package",

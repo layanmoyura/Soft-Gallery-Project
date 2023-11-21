@@ -1,11 +1,9 @@
 ﻿using AutoMapper;
 using DataAccessLayer.Entity;
 using PresentationLayer.Models;
-using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 
-namespace PresentationLayer.helper 
+namespace PresentationLayer.helper
 {
     public static class MappingFunctions
     {
@@ -84,6 +82,10 @@ namespace PresentationLayer.helper
         {
             var updateenrollment = _mapper.Map(enrollmentModel, enrollment);
             return updateenrollment;
+        }
+        public static Admin ToAdmin(this AdminModel adminModel)
+        {
+            return _mapper.Map<Admin>(adminModel);  
         }
 
 

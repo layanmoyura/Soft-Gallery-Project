@@ -44,11 +44,13 @@ namespace Soft_Gallery_Project
             services.AddScoped<IStudentRepository, StudentRepository>();
             services.AddScoped<ICourseRepositary,CourseRepositary>();
             services.AddScoped<IEnrollmentRepositary, EnrollmentRepositary>();
+            services.AddScoped<IAdminRepositary, AdminRepositary>();
 
 
             services.AddScoped<IStudentServices, StudentServices>();
             services.AddScoped<IEnrollmentService, EnrollmentService>();
             services.AddScoped<ICourseServices, CourseService>();
+            services.AddScoped<IAdminServices, AdminServices>();
             
 
 

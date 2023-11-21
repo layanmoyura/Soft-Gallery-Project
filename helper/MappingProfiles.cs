@@ -12,6 +12,7 @@ namespace PresentationLayer.helper
             CreateMap<Student, StudentModel>().ReverseMap();
             CreateMap<Course, CourseModel>().ReverseMap();
             CreateMap<Enrollment, EnrollmentModel>().ReverseMap();
+            CreateMap<Admin,AdminModel>().ReverseMap();
 
         }
     }

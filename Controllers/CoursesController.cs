@@ -3,10 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using PresentationLayer.Models;
 using PresentationLayer.helper;
 using BusinessLayer.Interfaces;
-using Microsoft.EntityFrameworkCore;
-using BusinessLayer.Services;
 using System;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace ContosoUniversity.Controllers
 {

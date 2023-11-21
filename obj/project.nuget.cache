@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "lrpfijntPe3SGPALN+XrPXRp9amWLw5yogF/VYa6/NLTHnAGllz1oTKMss62DNFpS74qDJyJ0P3Qjt80PG+MgA==",
+  "dgSpecHash": "sAiqJyjanQ/iwtmWi/X+fn+VaAFOQtsVl6pDOzxI5S60LEysykDRamqk2HL90JuV5y/e8JrRFkTB5r65U3K0Tw==",
   "success": true,
   "projectFilePath": "D:\\Soft-Gallery-Project\\PresentationLayer.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\HP\\.nuget\\packages\\automapper\\5.0.0\\automapper.5.0.0.nupkg.sha512",
+    "C:\\Users\\HP\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\HP\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\HP\\.nuget\\packages\\microsoft.aspnetcore.diagnostics.entityframeworkcore\\5.0.0\\microsoft.aspnetcore.diagnostics.entityframeworkcore.5.0.0.nupkg.sha512",
     "C:\\Users\\HP\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",
