@@ -4,6 +4,7 @@ using PresentationLayer.Models;
 using PresentationLayer.helper;
 using BusinessLayer.Interfaces;
 using System;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ContosoUniversity.Controllers
 {
@@ -18,6 +19,8 @@ namespace ContosoUniversity.Controllers
         }
 
         // GET: Courses
+
+        [Authorize(Roles = "admin")]
         public  ViewResult Index()
         {
             return View();
