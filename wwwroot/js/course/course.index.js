@@ -11,6 +11,7 @@ function loadCoursesList() {
         type: 'GET',
         url: url,
         dataType: 'html',
+        headers: { Authorization: `Bearer ${localStorage.getItem('jwt')}` },
         success: function (data) {
 
             $('#courseList').html(data);

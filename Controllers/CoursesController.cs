@@ -20,12 +20,13 @@ namespace ContosoUniversity.Controllers
 
         // GET: Courses
 
-        [Authorize(Roles = "admin")]
+
         public  ViewResult Index()
         {
             return View();
         }
 
+        [Authorize]
         [HttpGet, ActionName("IndexGet")]
         public async Task<IActionResult> IndexGet()
         {

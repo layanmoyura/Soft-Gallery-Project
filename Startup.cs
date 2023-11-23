@@ -54,20 +54,12 @@ namespace Soft_Gallery_Project
             services.AddScoped<IEnrollmentService, EnrollmentService>();
             services.AddScoped<ICourseServices, CourseService>();
             services.AddScoped<IAdminServices, AdminServices>();
-            
 
 
-            services.AddCors(options =>
-            {
-                options.AddPolicy("AllowAllHeaders",
-                    builder =>
-                    {
-                        builder
-                            .AllowAnyOrigin()  // Allow requests from any origin
-                            .AllowAnyMethod()  // Allow any HTTP method (GET, POST, PUT, DELETE, etc.)
-                            .AllowAnyHeader(); // Allow any HTTP headers
-            });
-            });
+
+            services.AddCors(options => options.AddDefaultPolicy(
+
+                builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()));
 
             var mapperConfig = new MapperConfiguration(mc =>
             {
@@ -92,8 +84,8 @@ namespace Soft_Gallery_Project
                     ValidateAudience = true,
                     ValidateLifetime = true,
                     ValidateIssuerSigningKey = true,
-                    ValidIssuer = "http://localhost:5000",
-                    ValidAudience = "http://localhost:5000",
+                    ValidIssuer = "http://localhost:44309",
+                    ValidAudience = "http://localhost:44309",
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345"))
                 };
             });
