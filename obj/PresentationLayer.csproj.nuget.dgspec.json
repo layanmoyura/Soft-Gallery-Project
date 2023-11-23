@@ -250,6 +250,10 @@
               "target": "Package",
               "version": "[5.0.2, )"
             },
+            "ServiceStack.Client": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
             "Xamarin.Essentials": {
               "target": "Package",
               "version": "[1.8.0, )"

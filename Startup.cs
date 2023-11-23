@@ -59,7 +59,8 @@ namespace Soft_Gallery_Project
 
             services.AddCors(options => options.AddDefaultPolicy(
 
-                builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()));
+               builder => builder.WithOrigins("http://localhost:44309").AllowAnyMethod().AllowAnyHeader()));
+
 
             var mapperConfig = new MapperConfiguration(mc =>
             {
@@ -84,8 +85,8 @@ namespace Soft_Gallery_Project
                     ValidateAudience = true,
                     ValidateLifetime = true,
                     ValidateIssuerSigningKey = true,
-                    ValidIssuer = "http://localhost:44309",
-                    ValidAudience = "http://localhost:44309",
+                    ValidIssuer = "http://localhost:5000",
+                    ValidAudience = "https://localhost:5000",
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345"))
                 };
             });
@@ -116,6 +117,7 @@ namespace Soft_Gallery_Project
             app.UseRouting();
 
             app.UseCors();
+            app.UseAuthentication();
 
             app.UseAuthorization();
 

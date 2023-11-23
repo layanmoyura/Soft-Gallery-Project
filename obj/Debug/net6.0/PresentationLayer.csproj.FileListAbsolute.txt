@@ -149,3 +149,6 @@ D:\Soft-Gallery-Project\obj\Debug\net6.0\ref\PresentationLayer.dll
 D:\Soft-Gallery-Project\bin\Debug\net6.0\Xamarin.Essentials.dll
 D:\Soft-Gallery-Project\bin\Debug\net6.0\BCrypt.Net-Next.dll
 D:\Soft-Gallery-Project\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\Soft-Gallery-Project\bin\Debug\net6.0\ServiceStack.Client.dll
+D:\Soft-Gallery-Project\bin\Debug\net6.0\ServiceStack.Interfaces.dll
+D:\Soft-Gallery-Project\bin\Debug\net6.0\ServiceStack.Text.dll

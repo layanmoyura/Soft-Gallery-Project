@@ -4,6 +4,7 @@ using PresentationLayer.Models;
 using PresentationLayer.helper;
 using BusinessLayer.Interfaces;
 using System;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 
 namespace ContosoUniversity.Controllers
