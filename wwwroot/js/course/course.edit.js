@@ -18,10 +18,18 @@ function setupEnrollmentForm() {
 
         if ($(this).valid()) {
             var formData = $(this).serialize();
+
+            var jwtToken = localStorage.getItem("jwt");
+            console.log('JWT Token:', jwtToken);
+
+            var headers = { Authorization: `Bearer ${jwtToken}` };
+            console.log('Headers:', headers);
+
             $.ajax({
                 type: 'POST',
                 url: url,
                 data: formData,
+                headers: headers,
                 success: function (response) {
                     if (response.success) {
                         $('#successModalBody').text('Courses updated successfully');

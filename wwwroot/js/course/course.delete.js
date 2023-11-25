@@ -15,9 +15,16 @@ function deleteCourse() {
 
     console.log(id);
 
+    var jwtToken = localStorage.getItem("jwt");
+    console.log('JWT Token:', jwtToken);
+
+    var headers = { Authorization: `Bearer ${jwtToken}` };
+    console.log('Headers:', headers);
+
     $.ajax({
         type: 'POST',
         url: 'https://localhost:44309/Courses/Delete/' + id,
+        headers:headers,
         success: function (response) {
             if (response.success) {
                 $('#successModalBody').text('Course deleted successfully');

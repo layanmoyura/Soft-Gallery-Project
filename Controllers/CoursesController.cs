@@ -41,7 +41,7 @@ namespace ContosoUniversity.Controllers
             return View(id);
         }
 
-
+        [Authorize]
         // GET: Courses/Details/5
         [HttpGet, ActionName("DetailsGet")]
         public async Task<IActionResult> DetailsGet(int? id)
@@ -68,6 +68,7 @@ namespace ContosoUniversity.Controllers
             return View();
         }
 
+        [Authorize]
         [HttpPost]
         
         public async Task<JsonResult> Create([Bind("CourseID,Title,Credits")] CourseModel coursemodel)
@@ -103,7 +104,7 @@ namespace ContosoUniversity.Controllers
             return View();
         }
 
-
+        
         [HttpGet, ActionName("Edit")]
         public async Task<IActionResult> Edit(int? id)
         {
@@ -121,7 +122,8 @@ namespace ContosoUniversity.Controllers
             return View(coursemodel);
         }
 
-        
+
+        [Authorize]
         [HttpPost, ActionName("Edit")]
         
         public async Task<JsonResult> EditPost(int? id)

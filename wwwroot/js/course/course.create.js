@@ -11,11 +11,19 @@ function setupCourseForm() {
 
     $('#frmCourse').submit(function (e) {
         e.preventDefault();
+
+        var jwtToken = localStorage.getItem("jwt");
+        console.log('JWT Token:', jwtToken);
+
+        var headers = { Authorization: `Bearer ${jwtToken}` };
+        console.log('Headers:', headers);
+
         var formData = $(this).serialize();
         $.ajax({
             type: 'POST',
             url: 'https://localhost:44309/Courses/Create',
             data: formData,
+            headers:headers,
             success: function (response) {
                 if (response.success) {
                     $('#successModalBody').text('Course created successfully');
