@@ -104,7 +104,7 @@ namespace ContosoUniversity.Controllers
             return View();
         }
 
-        
+       
         [HttpGet, ActionName("Edit")]
         public async Task<IActionResult> Edit(int? id)
         {
@@ -150,7 +150,7 @@ namespace ContosoUniversity.Controllers
             return View();
         }
 
-
+        
         // GET: Courses/Delete/5
         [HttpGet, ActionName("Delete")]
         public async Task<IActionResult> Delete(int? id)

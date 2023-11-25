@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
 namespace ContosoUniversity.Controllers
 {
@@ -54,7 +55,7 @@ namespace ContosoUniversity.Controllers
 
 
 
-        public ViewResult LogIn()
+        public ViewResult LogInView()
         {
             return View();
         }
@@ -98,5 +99,14 @@ namespace ContosoUniversity.Controllers
             return Json(new { success = false, error = "Model validation failed" });
 
         }
+
+        [HttpPost]
+        public RedirectToActionResult Logout()
+        {
+            
+            Response.Cookies.Delete("jwt");
+            return RedirectToAction(nameof(LogInView));
+        }
+
     }
 }
