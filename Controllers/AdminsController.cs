@@ -100,7 +100,7 @@ namespace ContosoUniversity.Controllers
 
         }
 
-        [HttpPost]
+        
         public RedirectToActionResult Logout()
         {
             
