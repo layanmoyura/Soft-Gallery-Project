@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using PresentationLayer.helper;
 using BusinessLayer.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ContosoUniversity.Controllers
 {
@@ -24,6 +25,8 @@ namespace ContosoUniversity.Controllers
             return View();
         }
 
+
+        [Authorize]
         [HttpGet, ActionName("IndexGet")]
         public async Task<IActionResult> IndexGet(string sortOrder, string searchString)
         {
@@ -46,6 +49,7 @@ namespace ContosoUniversity.Controllers
 
 
         // GET: Courses/Details/5
+        [Authorize]
         [HttpGet, ActionName("DetailsGet")]
         public async Task<IActionResult> DetailsGet(int? id)
         {
@@ -72,6 +76,7 @@ namespace ContosoUniversity.Controllers
             return View();
         }
 
+        [Authorize]
         [HttpPost]
         public async Task<JsonResult> Create([Bind("ID,LastName,FirstMidName,JoinedDate")] StudentModel studentmodel)
         {
@@ -100,6 +105,7 @@ namespace ContosoUniversity.Controllers
             return View();
         }
 
+        [Authorize]
         [HttpGet, ActionName("Edit")]
 
         public async Task<IActionResult> Edit(int? id)
@@ -167,6 +173,7 @@ namespace ContosoUniversity.Controllers
         }
 
         // POST: Students/Delete/5
+        [Authorize]
         [HttpPost, ActionName("Delete")]
         public async Task<JsonResult> DeleteConfirm(int? id)
         {

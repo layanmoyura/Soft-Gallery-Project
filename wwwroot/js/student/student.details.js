@@ -7,12 +7,19 @@ $(document).ready(function () {
 function loadStudent() {
     var id = $('#ID').val();
     console.log(id);
-    var url = 'https://localhost:44309/Students/DetailsGet/'+id;
+    var url = 'https://localhost:44309/Students/DetailsGet/' + id;
+
+    var jwtToken = localStorage.getItem("jwt");
+    console.log('JWT Token:', jwtToken);
+
+    var headers = { Authorization: `Bearer ${jwtToken}` };
+    console.log('Headers:', headers);
 
     $.ajax({
         type: 'GET',
         url: url,
         dataType: 'html',
+        headers:headers,
         success: function (data) {
 
             $('#studentDetails').html(data);

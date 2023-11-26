@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Th922os5+Ra1oF3KKwrHb+wvu0B90JqAL7St+0sOSVc=",
+  "Hash": "J8wyj3qtnKIv3o8tsEaimYLVQTh9U6cTlr2/IHj5wUM=",
   "Source": "PresentationLayer",
   "BasePath": "_content/PresentationLayer",
   "Mode": "Default",
@@ -270,6 +270,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\enrollment\\enrollment.index.js"
+    },
+    {
+      "Identity": "D:\\Soft-Gallery-Project\\wwwroot\\js\\Layout\\layout.js",
+      "SourceId": "PresentationLayer",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Soft-Gallery-Project\\wwwroot\\",
+      "BasePath": "_content/PresentationLayer",
+      "RelativePath": "js/Layout/layout.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\Layout\\layout.js"
     },
     {
       "Identity": "D:\\Soft-Gallery-Project\\wwwroot\\js\\site.js",

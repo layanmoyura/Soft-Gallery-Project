@@ -2,11 +2,19 @@ $(document).ready(function () {
 
     var id = $('#enrollmentID').text();
     console.log(id);
+
+    var jwtToken = localStorage.getItem("jwt");
+    console.log('JWT Token:', jwtToken);
+
+    var headers = { Authorization: `Bearer ${jwtToken}` };
+    console.log('Headers:', headers);
+
     $.ajax({
         
         
         url: 'https://localhost:44309/Enrollments/DetailsGet/' + id,
         type: 'GET',
+        headers:headers,
        
         success: function (data) {
             console.log(data);

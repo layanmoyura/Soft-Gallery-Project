@@ -12,12 +12,18 @@ $(document).ready(function () {
 function deleteStudent() {
     var id = $('#StudentID').val();
 
+    var jwtToken = localStorage.getItem("jwt");
+    console.log('JWT Token:', jwtToken);
+
+    var headers = { Authorization: `Bearer ${jwtToken}` };
+    console.log('Headers:', headers);
 
     console.log(id);
 
     $.ajax({
         type: 'POST',
-        url: 'https://localhost:44309/Students/Delete/'+id,
+        url: 'https://localhost:44309/Students/Delete/' + id,
+        headers:headers,
         success: function (response) {
             if (response.success) {
                 $('#successModalBody').text('Student deleted successfully');

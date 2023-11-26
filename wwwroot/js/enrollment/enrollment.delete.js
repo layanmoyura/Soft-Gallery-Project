@@ -12,11 +12,18 @@ $(document).ready(function () {
 
         console.log(id);
 
+        var jwtToken = localStorage.getItem("jwt");
+        console.log('JWT Token:', jwtToken);
+
+        var headers = { Authorization: `Bearer ${jwtToken}` };
+        console.log('Headers:', headers);
+
 
 
         $.ajax({
             type: 'POST',
             url: 'https://localhost:44309/Enrollments/Delete/' + id,
+            headers:headers,
             success: function (response) {
 
                 if (response.success) {

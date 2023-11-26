@@ -17,6 +17,10 @@
       "PackagePath": "staticwebassets\\js\\Admin\\admin.signup.js"
     },
     {
+      "Id": "D:\\Soft-Gallery-Project\\wwwroot\\js\\Layout\\layout.js",
+      "PackagePath": "staticwebassets\\js\\Layout\\layout.js"
+    },
+    {
       "Id": "D:\\Soft-Gallery-Project\\wwwroot\\js\\axios.min.js",
       "PackagePath": "staticwebassets\\js\\axios.min.js"
     },

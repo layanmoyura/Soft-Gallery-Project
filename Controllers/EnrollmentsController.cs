@@ -7,6 +7,7 @@ using PresentationLayer.helper;
 using BusinessLayer.Interfaces;
 using System;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ContosoUniversity.Controllers
 {
@@ -39,6 +40,7 @@ namespace ContosoUniversity.Controllers
         }
 
         // GET: Enrollments
+        [Authorize]
         [HttpGet, ActionName("IndexGet")]
         public async Task<ActionResult> IndexGet()
         {
@@ -54,6 +56,7 @@ namespace ContosoUniversity.Controllers
         }
 
         // GET: Enrollments/Details/5
+        [Authorize]
         [HttpGet, ActionName("DetailsGet")]
         public async Task<EnrollmentModel> DetailsGet(int? id)
         {
@@ -74,9 +77,10 @@ namespace ContosoUniversity.Controllers
             return enrollmentmodel;
         }
 
- 
+
 
         // GET: Enrollments/Create
+        
         public async Task<ViewResult> Create()
         {
             var courses = await _enrollmentService.GetCourses();
@@ -91,6 +95,7 @@ namespace ContosoUniversity.Controllers
         }
 
 
+        [Authorize]
         [HttpPost]
         public async Task<JsonResult> Create([Bind("EnrollmentID,CourseID,StudentID,Grade,EnrollmentDate")] EnrollmentModel enrollmentmodel)
         {
@@ -150,7 +155,7 @@ namespace ContosoUniversity.Controllers
         }
 
         // POST: Enrollments/Edit/5
-        
+        [Authorize]
         [HttpPost,ActionName("Edit")]
         public async Task<JsonResult> EditPost(int? id)
         {
@@ -194,6 +199,7 @@ namespace ContosoUniversity.Controllers
         }
 
         // POST: Enrollments/Delete/5
+        [Authorize]
         [HttpPost, ActionName("Delete")]
         
         public async Task<JsonResult> DeleteConfirmed(int id)

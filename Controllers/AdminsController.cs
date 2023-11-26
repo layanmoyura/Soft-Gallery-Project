@@ -100,13 +100,6 @@ namespace ContosoUniversity.Controllers
 
         }
 
-        
-        public RedirectToActionResult Logout()
-        {
-            
-            Response.Cookies.Delete("jwt");
-            return RedirectToAction(nameof(LogInView));
-        }
 
     }
 }

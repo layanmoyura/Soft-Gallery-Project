@@ -16,12 +16,19 @@ function setupStudentForm() {
         console.log(id);
         var url = 'https://localhost:44309/Students/Edit/' + id;
 
+        var jwtToken = localStorage.getItem("jwt");
+        console.log('JWT Token:', jwtToken);
+
+        var headers = { Authorization: `Bearer ${jwtToken}` };
+        console.log('Headers:', headers);
+
         if ($(this).valid()) {
             var formData = $(this).serialize();
             $.ajax({
                 type: 'POST',
                 url: url,
                 data: formData,
+                headers:headers,
                 success: function (response) {
                     if (response.success) {
                         $('#successModalBody').text('Student updated successfully');
