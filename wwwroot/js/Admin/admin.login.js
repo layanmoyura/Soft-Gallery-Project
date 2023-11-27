@@ -18,7 +18,7 @@ function setupLogInForm() {
             data: formData,
             success: function (response) {
                 if (response.success) {
-                    console.log(response.Token);
+                    console.log(response.token);
                     localStorage.setItem('jwt', response.token);
                     $('#successModalBody').text('Login successfully');
                     $('#successModal').modal('show');

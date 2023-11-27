@@ -2,26 +2,80 @@
     ViewData["Title"] = "Home Page";
 }
 
+<style>
+   
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f8f9fa;
+        color: #495057; 
+    }
+
+    .jumbotron {
+        background-color: #007BFF; 
+        color: #FFFFFF; 
+        text-align: center;
+        padding: 50px;
+        margin-bottom: 30px;
+    }
+
+    .feature-box {
+        background-color: #FFFFFF; 
+        border-radius: 8px; 
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+        padding: 30px;
+        margin-bottom: 30px;
+    }
+
+        .feature-box h2 {
+            color: #007BFF; 
+        }
+
+        .feature-box p {
+            color: #6C757D; 
+        }
+
+    .btn-primary {
+        background-color: #007BFF !important; 
+        border-color: #007BFF !important;
+    }
+</style>
+
 <div class="jumbotron">
-    <h1>Contoso University</h1>
+    <h1>Welcome to Contoso University</h1>
+    <p>
+        Explore the world of education with Contoso University, a cutting-edge application that showcases the power of Entity Framework Core in building robust ASP.NET Core MVC web applications.
+    </p>
 </div>
+
 <div class="row">
-    <div class="col-md-4">
-        <h2>Welcome to Contoso University</h2>
+    <div class="col-md-4 feature-box">
+        <h2>Discover Contoso University</h2>
         <p>
-            Contoso University is a sample application that
-            demonstrates how to use Entity Framework Core in an
-            ASP.NET Core MVC web application.
+            Immerse yourself in a rich learning experience. Contoso University demonstrates best practices for creating engaging and efficient web applications. Explore the possibilities!
         </p>
     </div>
-    <div class="col-md-4">
-        <h2>Build it from scratch</h2>
-        <p>You can build the application by following the steps in a series of tutorials.</p>
-        <p><a class="btn btn-default" href="https://docs.asp.net/en/latest/data/ef-mvc/intro.html">See the tutorial &raquo;</a></p>
+
+    <div class="col-md-4 feature-box">
+        <h2>Build it from Scratch</h2>
+        <p>
+            Ready to dive into the world of web development? Follow our step-by-step tutorials to build Contoso University from scratch. From setting up the environment to deploying your application – we've got you covered.
+        </p>
+        <p>
+            <a class="btn btn-primary" href="https://docs.asp.net/en/latest/data/ef-mvc/intro.html">
+                Start Building &raquo;
+            </a>
+        </p>
     </div>
-    <div class="col-md-4">
-        <h2>Download it</h2>
-        <p>You can download the completed project from GitHub.</p>
-        <p><a class="btn btn-default" href="https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/data/ef-mvc/intro/samples/5cu-final">See project source code &raquo;</a></p>
+
+    <div class="col-md-4 feature-box">
+        <h2>Download the Project</h2>
+        <p>
+            Want to explore the completed Contoso University project? Download the full source code from our GitHub repository. Learn, experiment, and contribute to the world of open-source development.
+        </p>
+        <p>
+            <a class="btn btn-primary" href="https://github.com/layanmoyura/Soft-Gallery-Project.git">
+                Explore on GitHub &raquo;
+            </a>
+        </p>
     </div>
 </div>
