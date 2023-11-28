@@ -24,6 +24,10 @@ function loadCoursesList() {
             $('#errorModalBody').text('An error occurred while retrieving the courses');
             $('#errorModal').modal('show');
             console.error('Error:', error);
+
+            setTimeout(function () {
+                window.location.href = 'https://localhost:44309/Home';
+            }, 2000);
         }
     });
 }

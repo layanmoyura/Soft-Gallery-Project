@@ -117,6 +117,7 @@ namespace Soft_Gallery_Project
             app.UseRouting();
 
             app.UseCors();
+
             app.UseAuthentication();
 
             app.UseAuthorization();

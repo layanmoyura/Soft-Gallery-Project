@@ -24,7 +24,7 @@ function setupLogInForm() {
                     $('#successModal').modal('show');
 
                     setTimeout(function () {
-                        window.location.href = 'https://localhost:44309/Courses/Index';
+                        window.location.href = 'https://localhost:44309/Home';
                     }, 2000);
                 }
                 else {

@@ -27,6 +27,10 @@ function loadEnrollmentList() {
             $('#errorModal').modal('show');
             console.error('Error:', error);
 
+            setTimeout(function () {
+                window.location.href = 'https://localhost:44309/Home';
+            }, 2000);
+
         }
     });
 }
