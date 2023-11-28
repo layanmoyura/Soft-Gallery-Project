@@ -85,8 +85,8 @@ namespace Soft_Gallery_Project
                     ValidateAudience = true,
                     ValidateLifetime = true,
                     ValidateIssuerSigningKey = true,
-                    ValidIssuer = "http://localhost:5000",
-                    ValidAudience = "https://localhost:5000",
+                    ValidIssuer = "https://localhost:44309",
+                    ValidAudience = "https://localhost:44309",
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345"))
                 };
             });
@@ -99,7 +99,7 @@ namespace Soft_Gallery_Project
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            app.UseCors("AllowAllHeaders");
+            
 
             if (env.IsDevelopment())
             {

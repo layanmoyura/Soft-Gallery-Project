@@ -73,8 +73,8 @@ namespace ContosoUniversity.Controllers
                         var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345"));
                         var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
                         var tokenOptions = new JwtSecurityToken(
-                            issuer: "http://localhost:5000",
-                            audience: "https://localhost:5000",
+                            issuer: "https://localhost:44309",
+                            audience: "https://localhost:44309",
                             claims: new List<Claim>() {
                         new Claim("role","admin"),new Claim("name",admin.FirstName)},
                             expires: DateTime.Now.AddMinutes(5),

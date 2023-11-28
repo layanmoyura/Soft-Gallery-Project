@@ -22,6 +22,7 @@ namespace ContosoUniversity.Controllers
         // GET: Courses
 
 
+        [HttpGet, ActionName("Index")]
         public  ViewResult Index()
         {
             return View();
