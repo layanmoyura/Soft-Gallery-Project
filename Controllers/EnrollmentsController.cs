@@ -34,9 +34,12 @@ namespace ContosoUniversity.Controllers
             return selectList;
         }
 
-        public ViewResult Index()
+
+        [Authorize]
+        [HttpGet, ActionName("Index")]
+        public PartialViewResult Index()
         {
-            return View();
+            return PartialView("~/Views/Enrollments/Index.cshtml");
         }
 
         // GET: Enrollments

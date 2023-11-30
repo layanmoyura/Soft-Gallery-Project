@@ -20,9 +20,12 @@ namespace ContosoUniversity.Controllers
 
 
         //READ
-        public ViewResult Index()
+
+        [Authorize]
+        [HttpGet, ActionName("Index")]
+        public PartialViewResult Index()
         {
-            return View();
+            return PartialView("~/Views/Students/Index.cshtml");
         }
 
 

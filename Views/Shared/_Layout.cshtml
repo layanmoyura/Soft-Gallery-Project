@@ -27,19 +27,19 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Students" asp-action="Index">Students</a>
+                            <a class="nav-link text-dark" id="btnStudent">Students</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Courses" asp-action="Index"  id="btnCourse">Courses</a>
+                            <a class="nav-link text-dark"   id="btnCourse">Courses</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Enrollments" asp-action="Index">Enrollments</a>
+                            <a class="nav-link text-dark" id="btnEnrollment">Enrollments</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Admins" asp-action="SignUp">SignUp</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Admins" asp-action="SignUp" id="btnSignUp">SignUp</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Admins" asp-action="LogInView">LogIn</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Admins" asp-action="LogInView" id="btnLogIn">LogIn</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark"  id="btnLogOut">LogOut</a>
@@ -50,7 +50,7 @@
         </nav>
     </header>
     <div class="container">
-        <main role="main" class="pb-3">
+        <main role="main" class="pb-3" id="mainView">
             @RenderBody()
         </main>
     </div>
