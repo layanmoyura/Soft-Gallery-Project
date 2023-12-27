@@ -1,6 +1,10 @@
 $(document).ready(function () {
     
     setupStudentForm();
+
+    $('#StudentNav').on('click', function () {
+        studentFunc();
+    });
 });
 
 function setupStudentForm() {
@@ -41,5 +45,31 @@ function setupStudentForm() {
                 console.error('Error:', error);
             }
         });
+    });
+}
+
+function studentFunc() {
+    var url = 'https://localhost:44309/Students/Index';
+
+    var jwtToken = localStorage.getItem("jwt");
+    console.log('JWT Token:', jwtToken);
+
+    var headers = { Authorization: `Bearer ${jwtToken}` };
+    console.log('Headers:', headers);
+
+    $.ajax({
+        type: 'GET',
+        url: url,
+        dataType: 'html',
+        headers: headers,
+        success: function (result) {
+            console.log(result);
+            $('#mainView').html(result);
+        },
+        error: function (error) {
+            $('#errorModalBody').text('Please Log in first');
+            $('#errorModal').modal('show');
+            console.error('Error:', error);
+        }
     });
 }
