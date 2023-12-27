@@ -21,11 +21,11 @@ namespace ContosoUniversity.Controllers
 
         //READ
 
-        [Authorize]
+        
         [HttpGet, ActionName("Index")]
-        public PartialViewResult Index()
+        public ViewResult Index()
         {
-            return PartialView("~/Views/Students/Index.cshtml");
+            return View();
         }
 
 
@@ -108,7 +108,7 @@ namespace ContosoUniversity.Controllers
             return View();
         }
 
-        [Authorize]
+        
         [HttpGet, ActionName("Edit")]
 
         public async Task<IActionResult> Edit(int? id)
@@ -158,6 +158,7 @@ namespace ContosoUniversity.Controllers
             return View();
         }
 
+        
         [HttpGet, ActionName("Delete")]
         public async Task<IActionResult> Delete(int? id)
         {

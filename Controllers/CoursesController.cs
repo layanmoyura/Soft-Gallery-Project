@@ -21,11 +21,10 @@ namespace ContosoUniversity.Controllers
 
         // GET: Courses
 
-        [Authorize]
         [HttpGet, ActionName("Index")]
-        public PartialViewResult Index()
+        public ViewResult Index()
         {
-            return PartialView("~/Views/Courses/Index.cshtml");
+            return View("~/Views/Courses/Index.cshtml");
         }
 
         [Authorize]

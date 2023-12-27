@@ -3,17 +3,17 @@ $(document).ready(function () {
         logoutFunc();
     });
 
-    $('#btnCourse').on('click', function () {
-        courseFunc();
-    });
+    //$('#btnCourse').on('click', function () {
+    //    courseFunc();
+    //});
 
-    $('#btnEnrollment').on('click', function () {
-        enrollmentFunc();
-    });
+    //$('#btnEnrollment').on('click', function () {
+    //    enrollmentFunc();
+    //});
 
-    $('#btnStudent').on('click', function () {
-        studentFunc();
-    });
+    //$('#btnStudent').on('click', function () {
+    //    studentFunc();
+    //});
 
     //$('#btnSignUp').on('click', function () {
     //    signUpFunc();

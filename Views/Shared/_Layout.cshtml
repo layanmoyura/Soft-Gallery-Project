@@ -27,13 +27,13 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" id="btnStudent">Students</a>
+                            <a class="nav-link text-dark" id="btnStudent" asp-controller="Students" asp-action="Index">Students</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark"   id="btnCourse">Courses</a>
+                            <a class="nav-link text-dark" id="btnCourse" asp-controller="Courses" asp-action="Index">Courses</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" id="btnEnrollment">Enrollments</a>
+                            <a class="nav-link text-dark" id="btnEnrollment" asp-controller="Enrollments" asp-action="Index">Enrollments</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Admins" asp-action="SignUp" id="btnSignUp">SignUp</a>
@@ -42,7 +42,7 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Admins" asp-action="LogInView" id="btnLogIn">LogIn</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark"  id="btnLogOut">LogOut</a>
+                            <a class="nav-link text-dark"  id="btnLogOut">Log Out</a>
                         </li>
                     </ul>
                 </div>
@@ -95,7 +95,7 @@
     </div>
 </div>
 
-    <script src="~/js/layout/layout.js"></script>
+    <script src="~/js/layout/layout.js"></script> 
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
